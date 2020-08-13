@@ -1,0 +1,112 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration is used for unit/integration tests.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+eureka:
+  client:
+    enabled: false
+  instance:
+    appname: CatinyMessenger
+    instanceId: CatinyMessenger:${spring.application.instance-id:${random.value}}
+
+spring:
+  application:
+    name: CatinyMessenger
+  jackson:
+    serialization:
+      write-durations-as-timestamps: false
+  data:
+    cassandra:
+      contactPoints: localhost
+      port: 0
+      protocolVersion: V4
+      compression: NONE
+      keyspaceName: cassandra_unit_keyspace
+  mail:
+    host: localhost
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+  task:
+    execution:
+      thread-name-prefix: catiny-messenger-task-
+      pool:
+        core-size: 1
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: catiny-messenger-scheduling-
+      pool:
+        size: 1
+  thymeleaf:
+    mode: HTML
+
+server:
+  port: 10344
+  address: localhost
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  clientApp:
+    name: 'catinyMessengerApp'
+  logging:
+    # To test json console appender
+    use-json-format: false
+    logstash:
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+        base64-secret: NmZhZDY1NWMzNDBhMzk0M2UwZGVmODJmYWE0ZTVlYmY4NWE3YzAxOGE3ZWNlMzI2ZTY3YTU0ZjU1YTkwY2Q0NjU2ZDQzODIwZGQ3ZGFjODExNjU1YTJkOTVlYjc1YWYxM2RlNjYxYWEzNmFkN2E0NjExM2ZiMGQ4NDZlOTdjNjY=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+    client-authorization:
+      access-token-uri: http://catinyuaa/oauth/token
+      token-service-id: catinyuaa
+      client-id: internal
+      client-secret: internal
+  metrics:
+    logs: # Reports metrics in the logs
+      enabled: true
+      report-frequency: 60 # in seconds
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    group.id: catiny-messenger
+    auto.offset.reset: earliest
+  producer:
+    key.serializer: org.apache.kafka.common.serialization.StringSerializer
+    value.serializer: org.apache.kafka.common.serialization.StringSerializer
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:
