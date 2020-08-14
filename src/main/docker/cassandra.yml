@@ -15,6 +15,10 @@ services:
       - 12013:7199
       - 12010:9042
       - 12014:9160
+    environment:
+      #yuvytung . max ram for cassandra
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=2048M
   catinymessenger-cassandra-migration:
     extends:
       file: cassandra-migration.yml
