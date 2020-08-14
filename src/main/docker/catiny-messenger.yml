@@ -1,0 +1,19 @@
+version: '2'
+services:
+  catinymessenger-app:
+    image: catinymessenger
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - JHIPSTER_CACHE_REDIS_SERVER=redis://catinymessenger-redis:6379
+      - JHIPSTER_CACHE_REDIS_CLUSTER=false
+      # - JHIPSTER_CACHE_REDIS_SERVER=redis://catinymessenger-redis:6379
+      # - JHIPSTER_CACHE_REDIS_CLUSTER=true
+      - SPRING_DATA_CASSANDRA_CONTACTPOINTS=catinymessenger-cassandra
+      - JHIPSTER_SLEEP=80 # gives time for uaa and the Cassandra cluster to start and execute the migration scripts
+      - KAFKA_BOOTSTRAPSERVERS=kafka:9092
+    ports:
+      - 10010:10010

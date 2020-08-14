@@ -2,19 +2,19 @@ version: '2'
 services:
   catinymessenger-cassandra:
     image: cassandra:3.11.5
-    # volumes:
-    #     - ~/volumes/jhipster/CatinyMessenger/cassandra/:/var/lib/cassandra/data
+    volumes:
+      - /root/volumes/jhipster/CatinyMessenger/cassandra/:/var/lib/cassandra/data
     ports:
-      #      - 7000:7000
-      #      - 7001:7001
-      #      - 7199:7199
-      #      - 9042:9042
-      #      - 9160:9160
       - 12011:7000
       - 12012:7001
       - 12013:7199
       - 12010:9042
       - 12014:9160
+    #      - 7000:7000
+    #      - 7001:7001
+    #      - 7199:7199
+    #      - 9042:9042
+    #      - 9160:9160
     environment:
       #yuvytung . max ram for cassandra
       - HEAP_NEWSIZE=128M
