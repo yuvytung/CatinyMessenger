@@ -32,86 +32,97 @@ import java.util.List;
 
 @Configuration
 @Profile({JHipsterConstants.SPRING_PROFILE_DEVELOPMENT, JHipsterConstants.SPRING_PROFILE_PRODUCTION})
-public class CassandraConfiguration {
+public class CassandraConfiguration
+{
 
-    @Value("${spring.data.cassandra.protocolVersion:V4}")
-    private ProtocolVersion protocolVersion;
+  @Value("${spring.data.cassandra.protocolVersion:V4}")
+  private ProtocolVersion protocolVersion;
 
-    @Autowired(required = false)
-    MetricRegistry metricRegistry;
+  @Autowired(required = false)
+  MetricRegistry metricRegistry;
 
-    private final Logger log = LoggerFactory.getLogger(CassandraConfiguration.class);
+  private final Logger log = LoggerFactory.getLogger(CassandraConfiguration.class);
 
-    @Autowired
-    private Cluster cluster;
+  @Autowired
+  private Cluster cluster;
 
-    @PostConstruct
-    public void postConstruct() {
-        TupleType tupleType = cluster.getMetadata()
-            .newTupleType(DataType.timestamp(), DataType.varchar());
+  @PostConstruct
+  public void postConstruct()
+  {
+    TupleType tupleType = cluster.getMetadata()
+      .newTupleType(DataType.timestamp(), DataType.varchar());
 
-        cluster.getConfiguration().getCodecRegistry()
-            .register(LocalDateCodec.instance)
-            .register(InstantCodec.instance)
-            .register(new ZonedDateTimeCodec(tupleType));
+    cluster.getConfiguration().getCodecRegistry()
+      .register(LocalDateCodec.instance)
+      .register(InstantCodec.instance)
+      .register(new ZonedDateTimeCodec(tupleType));
 
-        cluster.init();
+    cluster.init();
+  }
+
+  @Bean
+  public CassandraCustomConversions cassandraCustomConversions(Cluster cluster)
+  {
+    List<Converter<?, ?>> converters = new ArrayList<>();
+    converters.add(TupleToZonedDateTimeConverter.INSTANCE);
+    converters.add(new ZonedDateTimeToTupleConverter(protocolVersion, cluster.getConfiguration().getCodecRegistry()));
+    return new CassandraCustomConversions(converters);
+  }
+
+  @ReadingConverter
+  enum TupleToZonedDateTimeConverter implements Converter<TupleValue, ZonedDateTime>
+  {
+    INSTANCE;
+
+    @Override
+    public ZonedDateTime convert(TupleValue source)
+    {
+      java.util.Date timestamp = source.getTimestamp(0);
+      ZoneId zoneId = ZoneId.of(source.getString(1));
+      return timestamp.toInstant().atZone(zoneId);
+    }
+  }
+
+  @WritingConverter
+  class ZonedDateTimeToTupleConverter implements Converter<ZonedDateTime, TupleValue>
+  {
+
+    private TupleType type;
+
+    public ZonedDateTimeToTupleConverter(ProtocolVersion version, CodecRegistry codecRegistry)
+    {
+      type = TupleType.of(version, codecRegistry, DataType.timestamp(), DataType.text());
     }
 
-    @Bean
-    public CassandraCustomConversions cassandraCustomConversions(Cluster cluster) {
-        List<Converter<?, ?>> converters = new ArrayList<>();
-        converters.add(TupleToZonedDateTimeConverter.INSTANCE);
-        converters.add(new ZonedDateTimeToTupleConverter(protocolVersion, cluster.getConfiguration().getCodecRegistry()));
-        return new CassandraCustomConversions(converters);
+    @Override
+    public TupleValue convert(@Nonnull ZonedDateTime source)
+    {
+      TupleValue tupleValue = type.newValue();
+      tupleValue.setTimestamp(0, Date.from(source.toLocalDateTime().toInstant(ZoneOffset.UTC)));
+      tupleValue.setString(1, source.getZone().toString());
+      return tupleValue;
     }
+  }
 
-    @ReadingConverter
-    enum TupleToZonedDateTimeConverter implements Converter<TupleValue, ZonedDateTime> {
-        INSTANCE;
+  @Bean
+  ClusterBuilderCustomizer clusterBuilderCustomizer(CassandraProperties properties)
+  {
+    return builder -> builder
+      .withProtocolVersion(protocolVersion)
+      .withPort(getPort(properties))
+      .withoutJMXReporting()
+      .withoutMetrics();
+  }
 
-        @Override
-        public ZonedDateTime convert(TupleValue source) {
-            java.util.Date timestamp = source.getTimestamp(0);
-            ZoneId zoneId = ZoneId.of(source.getString(1));
-            return timestamp.toInstant().atZone(zoneId);
-        }
-    }
+  protected int getPort(CassandraProperties properties)
+  {
+    return properties.getPort();
+  }
 
-    @WritingConverter
-    class ZonedDateTimeToTupleConverter implements Converter<ZonedDateTime, TupleValue> {
-
-        private TupleType type;
-
-        public ZonedDateTimeToTupleConverter(ProtocolVersion version, CodecRegistry codecRegistry) {
-            type = TupleType.of(version, codecRegistry, DataType.timestamp(), DataType.text());
-        }
-
-        @Override
-        public TupleValue convert(@Nonnull ZonedDateTime source) {
-            TupleValue tupleValue = type.newValue();
-            tupleValue.setTimestamp(0, Date.from(source.toLocalDateTime().toInstant(ZoneOffset.UTC)));
-            tupleValue.setString(1, source.getZone().toString());
-            return tupleValue;
-        }
-    }
-
-    @Bean
-    ClusterBuilderCustomizer clusterBuilderCustomizer(CassandraProperties properties) {
-        return builder -> builder
-            .withProtocolVersion(protocolVersion)
-            .withPort(getPort(properties))
-            .withoutJMXReporting()
-            .withoutMetrics();
-    }
-
-    protected int getPort(CassandraProperties properties) {
-        return properties.getPort();
-    }
-
-    @Bean(destroyMethod = "close")
-    public Session session(CassandraProperties properties, Cluster cluster) {
-        log.debug("Configuring Cassandra session");
-        return StringUtils.hasText(properties.getKeyspaceName()) ? cluster.connect(properties.getKeyspaceName()) : cluster.connect();
-    }
+  @Bean(destroyMethod = "close")
+  public Session session(CassandraProperties properties, Cluster cluster)
+  {
+    log.debug("Configuring Cassandra session");
+    return StringUtils.hasText(properties.getKeyspaceName()) ? cluster.connect(properties.getKeyspaceName()) : cluster.connect();
+  }
 }

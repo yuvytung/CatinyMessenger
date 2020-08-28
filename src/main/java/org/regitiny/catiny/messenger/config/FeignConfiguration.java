@@ -9,14 +9,16 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @EnableFeignClients(basePackages = "org.regitiny.catiny.messenger")
 @Import(FeignClientsConfiguration.class)
-public class FeignConfiguration {
+public class FeignConfiguration
+{
 
-    /**
-     * Set the Feign specific log level to log client REST requests.
-     */
-    @Bean
-    feign.Logger.Level feignLoggerLevel() {
-        return feign.Logger.Level.BASIC;
-    }
+  /**
+   * Set the Feign specific log level to log client REST requests.
+   */
+  @Bean
+  feign.Logger.Level feignLoggerLevel()
+  {
+    return feign.Logger.Level.BASIC;
+  }
 
 }
