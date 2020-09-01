@@ -28,11 +28,9 @@
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
-
     {
       "fieldName": "deletedStatus",
-      "fieldType": "String",
-      "fieldValidateRules": []
+      "fieldType": "String"
     }
   ],
   "changelogDate": "20200901111815",

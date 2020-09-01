@@ -9,8 +9,13 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "messageID",
+      "fieldName": "recipientID",
       "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
     {
@@ -19,43 +24,29 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "recipientName",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "topicName",
       "fieldType": "String"
     },
     {
-      "fieldName": "senderID",
+      "fieldName": "adderID",
       "fieldType": "UUID",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "senderName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "messageStatus",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "messageContent",
-      "fieldType": "String",
+      "fieldName": "creatorID",
+      "fieldType": "UUID",
       "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "deletedStatus",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "editCount",
-      "fieldType": "String",
-      "fieldValidateRules": []
     }
   ],
   "changelogDate": "20200901111814",
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",
-  "entityTableName": "message_by_topic_messageid",
+  "entityTableName": "message_simple_by_recipient",
   "databaseType": "cassandra",
   "readOnly": false,
   "jpaMetamodelFiltering": false,
