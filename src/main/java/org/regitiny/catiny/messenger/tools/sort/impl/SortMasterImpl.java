@@ -1,24 +1,61 @@
 package org.regitiny.catiny.messenger.tools.sort.impl;
 
+import lombok.extern.log4j.Log4j2;
 import org.regitiny.catiny.messenger.tools.sort.SortMaster;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SortMasterImpl implements SortMaster
+@Log4j2
+public class SortMasterImpl<Type> implements SortMaster<Type>
 {
   private static final int SORT_ASC = -1;
   private static final int SORT_DESC = 1;
 
   @Override
-  public void quickSortASC(List objectsInput, List<String> sorterInput)
+  public void quickSortASC(List<Type> objectInput, String sorterName)
   {
-    new QuickSort().sort(objectsInput, sorterInput, SORT_ASC);
+    sortby(objectInput, sorterName, SORT_ASC);
   }
 
-  @Override
-  public void quickSortDESC(List objectsInput, List<String> sorterInput)
+  public void quickSortDESC(List<Type> objectInput, String sorterName)
   {
-    new QuickSort().sort(objectsInput, sorterInput, SORT_DESC);
+    sortby(objectInput, sorterName, SORT_DESC);
+  }
+
+  private void sortby(List<Type> objectInput, String sorterName, int sortDesc)
+  {
+    if (objectInput.isEmpty())
+    {
+      log.warn("list object input is empty ");
+      return;
+    }
+    List<String> sorter = createSotrer(objectInput, sorterName);
+    QuickSort quickSort = new QuickSort();
+    quickSort.sort(objectInput, sorter, sortDesc);
+  }
+
+  // tiền xử lý tạo mảng để sắp xếp theo tên đã cung cấp
+  private List<String> createSotrer(List<Type> objectInput, String sorterName)
+  {
+
+    List<String> sorters = new ArrayList<>();
+    for (Type object : objectInput)
+    {
+      try
+      {
+        Method get = object.getClass().getMethod("get" + sorterName);
+        String sorter = (String) get.invoke(object);
+        sorters.add(sorter);
+      }
+      catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    return sorters;
   }
 
 
@@ -30,7 +67,7 @@ public class SortMasterImpl implements SortMaster
     // mặc định = 1 thì sorter.get(j).compareTo(pivot) * sortDefaultIsDESC > 0  là giảm dần
     private int sortDefaultIsDESC = 1;
 
-    private int partition(List objects, List<String> sorter, int low, int high)
+    private int partition(List<Type> objects, List<String> sorter, int low, int high)
     {
       String pivot = sorter.get(high);
       int i = (low - 1);
@@ -40,19 +77,19 @@ public class SortMasterImpl implements SortMaster
       return swap(objects, sorter, i, high);
     }
 
-    private int swap(List objects, List<String> sorter, int i, int j)
+    private int swap(List<Type> objects, List<String> sorter, int i, int j)
     {
       String temp = sorter.get(++i);
       sorter.set(i, sorter.get(j));
       sorter.set(j, temp);
 
-      Object objecttemp = objects.get(i);
+      Type objecttemp = objects.get(i);
       objects.set(i, objects.get(j));
       objects.set(j, objecttemp);
       return i;
     }
 
-    private void sort(List objects, List<String> sorter, int low, int high)
+    private void sort(List<Type> objects, List<String> sorter, int low, int high)
     {
       if (low < high)
       {
@@ -62,7 +99,7 @@ public class SortMasterImpl implements SortMaster
       }
     }
 
-    private void sort(List objectsInput, List<String> sorterInput, int sortedByOrder)
+    private void sort(List<Type> objectsInput, List<String> sorterInput, int sortedByOrder)
     {
       this.sortDefaultIsDESC = sortedByOrder;
       sort(objectsInput, sorterInput, 0, sorterInput.size() - 1);
@@ -71,4 +108,3 @@ public class SortMasterImpl implements SortMaster
   }
 
 }
-

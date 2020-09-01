@@ -2,10 +2,10 @@ package org.regitiny.catiny.messenger.tools.sort;
 
 import java.util.List;
 
-public interface SortMaster
+public interface SortMaster<Type>
 {
-  void quickSortASC(List objectsInput, List<String> sorterInput);
+  void quickSortASC(List<Type> objectsInput, String sorterName);
 
 
-  void quickSortDESC(List objectsInput, List<String> sorterInput);
+  void quickSortDESC(List<Type> objectsInput, String sorterName);
 }

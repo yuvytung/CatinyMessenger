@@ -262,6 +262,9 @@ dependencies {
 
     testImplementation "org.testcontainers:testcontainers"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
+    //yuvytung
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 if (project.hasProperty("gae")) {
