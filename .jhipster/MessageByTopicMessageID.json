@@ -1,0 +1,64 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "CatinyMessenger",
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "topicID",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "messageID",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "topicName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "senderID",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "senderName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "messageStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "messageContent",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "deletedStatus",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "editCount",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    }
+  ],
+  "changelogDate": "20200901111814",
+  "dto": "mapstruct",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "message_by_topic_messageid",
+  "databaseType": "cassandra",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no",
+  "microserviceName": "CatinyMessenger"
+}
