@@ -15,7 +15,7 @@
     },
     {
       "fieldName": "createDate",
-      "fieldType": "ZonedDateTime",
+      "fieldType": "Instant",
       "fieldValidateRules": ["required"]
     },
     {
@@ -43,7 +43,7 @@
     {
       "fieldName": "messageContent",
       "fieldType": "String",
-      "fieldValidateRules": []
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "messageID",

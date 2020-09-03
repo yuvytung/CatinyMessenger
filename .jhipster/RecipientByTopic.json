@@ -20,7 +20,7 @@
     },
     {
       "fieldName": "createDate",
-      "fieldType": "ZonedDateTime",
+      "fieldType": "Instant",
       "fieldValidateRules": ["required"]
     },
     {
@@ -46,7 +46,7 @@
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",
-  "entityTableName": "message_simple_by_recipient",
+  "entityTableName": "recipient_by_topic",
   "databaseType": "cassandra",
   "readOnly": false,
   "jpaMetamodelFiltering": false,

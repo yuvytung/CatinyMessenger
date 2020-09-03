@@ -15,6 +15,11 @@
     },
     {
       "fieldName": "createDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "modifyDate",
       "fieldType": "ZonedDateTime",
       "fieldValidateRules": ["required"]
     },
@@ -32,23 +37,19 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "messageStatus",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "messageContent",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "deletedStatus",
-      "fieldType": "String",
+      "fieldType": "Boolean",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "editCount",
-      "fieldType": "String",
-      "fieldValidateRules": []
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
     }
   ],
   "changelogDate": "20200901111814",

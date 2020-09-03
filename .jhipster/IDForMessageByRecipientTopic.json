@@ -15,7 +15,7 @@
     },
     {
       "fieldName": "createDate",
-      "fieldType": "ZonedDateTime",
+      "fieldType": "Instant",
       "fieldValidateRules": ["required"]
     },
     {
@@ -30,10 +30,11 @@
     },
     {
       "fieldName": "deletedStatus",
-      "fieldType": "String"
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
     }
   ],
-  "changelogDate": "20200901111815",
+  "changelogDate": "2020090111184",
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",
