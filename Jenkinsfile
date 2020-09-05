@@ -47,7 +47,7 @@ node {
 		}
 		catch (err)
 		{
-			echo 'mariadb is not running'
+			echo 'cassandra is not running'
 			sh "docker-compose -f src/main/docker/cassandra-cluster.yml up -d"
 		}
 		try
@@ -56,7 +56,7 @@ node {
 		}
 		catch (err)
 		{
-			echo 'mariadb is not running'
+			echo 'redis is not running'
 			sh "docker-compose -f src/main/docker/redis.yml up -d"
 		}
 
