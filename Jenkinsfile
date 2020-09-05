@@ -35,7 +35,54 @@ node {
 		catch (err)
 		{
 			echo "docker_jhipster-registry_1 not running"
-//			sh "docker-compose -f src/main/docker/jhipster-registry-docker.yml up -d"
+			sh "docker-compose -f src/main/docker/jhipster-registry.yml up -d"
+		}
+	}
+
+	stage('check integration')
+	{
+		try
+		{
+			sh 'docker container inspect docker_catinymessenger-cassandra_1'
+		}
+		catch (err)
+		{
+			echo 'mariadb is not running'
+			sh "docker-compose -f src/main/docker/cassandra-cluster.yml up -d"
+		}
+		try
+		{
+			sh 'docker container inspect docker_catinymessenger-redis_1'
+		}
+		catch (err)
+		{
+			echo 'mariadb is not running'
+			sh "docker-compose -f src/main/docker/redis.yml up -d"
+		}
+
+		try
+		{
+			sh 'docker container inspect docker_catinymessenger-cassandra_1'
+			sh 'docker container inspect docker_catinyuaa-redis_1'
+		}
+		catch (err)
+		{
+			echo 'Unable to start the required containers'
+			throw  err
+		}
+	}
+
+	stage('check kafka')
+	{
+		try
+		{
+			sh "docker container inspect docker_zookeeper_1"
+			sh "docker container inspect docker_kafka_1"
+		}
+		catch (err)
+		{
+			echo "kafka or zookeeper is not running"
+			sh "docker-compose -f src/main/docker/kafka.yml up -d"
 		}
 	}
 

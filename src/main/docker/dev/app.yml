@@ -12,9 +12,11 @@ services:
     extends:
       file: cassandra-cluster.yml
       service: catinymessenger-cassandra-node
+    environment:
+      - CASSANDRA_SEEDS=catinymessenger-cassandra
   catinymessenger-cassandra-migration:
     extends:
-      file: cassandra-cluster.yml
+      file: ../cassandra-cluster.yml
       service: catinymessenger-cassandra-migration
   catinymessenger-redis:
     extends:
@@ -31,3 +33,7 @@ services:
     extends:
       file: kafka.yml
       service: zookeeper
+  jhipster-registry:
+    extends:
+      file: jhipster-registry.yml
+      service: jhipster-registry

@@ -11,7 +11,7 @@ services:
       - JHIPSTER_CACHE_REDIS_SERVER=redis://catinymessenger-redis:6379
       - JHIPSTER_CACHE_REDIS_CLUSTER=false
       - SPRING_DATA_CASSANDRA_CONTACTPOINTS=catinymessenger-cassandra
-      - JHIPSTER_SLEEP=80 # gives time for uaa and the Cassandra cluster to start and execute the migration scripts
+      - JHIPSTER_SLEEP=30 # gives time for uaa and the Cassandra cluster to start and execute the migration scripts
       - KAFKA_BOOTSTRAPSERVERS=kafka:9092
     ports:
       - 10010:10010

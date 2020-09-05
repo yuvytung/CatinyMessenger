@@ -2,8 +2,8 @@ version: '2'
 services:
   catinymessenger-cassandra:
     image: cassandra:3.11.5
-    volumes:
-      - /root/volumes/jhipster/CatinyMessenger/cassandra/:/var/lib/cassandra/data
+    #    volumes:
+    #      - /root/volumes/jhipster/CatinyMessenger/cassandra/:/var/lib/cassandra/data
     ports:
       - 12011:7000
       - 12012:7001
@@ -11,7 +11,12 @@ services:
       - 12010:9042
       - 12014:9160
     environment:
-      #yuvytung . max ram for cassandra
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=512M
+  catinymessenger-cassandra-node:
+    image: cassandra:3.11.5
+    environment:
+      - CASSANDRA_SEEDS=catinymessenger-cassandra
       - HEAP_NEWSIZE=128M
       - MAX_HEAP_SIZE=512M
   catinymessenger-cassandra-migration:
@@ -19,4 +24,4 @@ services:
       file: cassandra-migration.yml
       service: catinymessenger-cassandra-migration
     environment:
-      - CREATE_KEYSPACE_SCRIPT=create-keyspace.cql
+      - CREATE_KEYSPACE_SCRIPT=create-keyspace-prod.cql
