@@ -1,7 +1,7 @@
-package org.regitiny.catiny.messenger.tools.sort.impl;
+package org.regitiny.catiny.messenger.tools.impl;
 
 import lombok.extern.log4j.Log4j2;
-import org.regitiny.catiny.messenger.tools.sort.SortMaster;
+import org.regitiny.catiny.messenger.tools.SortMaster;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
