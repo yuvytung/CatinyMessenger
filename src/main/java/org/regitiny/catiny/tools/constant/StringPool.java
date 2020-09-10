@@ -1,4 +1,4 @@
-package org.regitiny.catiny.messenger.tools.constant;
+package org.regitiny.catiny.tools.constant;
 
 import java.nio.charset.Charset;
 

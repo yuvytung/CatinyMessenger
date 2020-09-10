@@ -265,6 +265,7 @@ dependencies {
     //yuvytung
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.json:json:20200518'
 }
 
 if (project.hasProperty("gae")) {

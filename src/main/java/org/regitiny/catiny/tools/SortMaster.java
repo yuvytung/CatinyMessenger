@@ -1,4 +1,4 @@
-package org.regitiny.catiny.messenger.tools;
+package org.regitiny.catiny.tools;
 
 import java.util.List;
 

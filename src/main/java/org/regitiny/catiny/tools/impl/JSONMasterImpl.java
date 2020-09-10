@@ -1,13 +1,10 @@
-package org.regitiny.catiny.messenger.tools.impl;
+package org.regitiny.catiny.tools.impl;
 
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.regitiny.catiny.messenger.tools.JSONMaster;
-import org.regitiny.catiny.messenger.tools.constant.StringPool;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.regitiny.catiny.tools.JSONMaster;
+import org.regitiny.catiny.tools.constant.StringPool;
 
 @Log4j2
 public class JSONMasterImpl implements JSONMaster
