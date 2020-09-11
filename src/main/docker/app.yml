@@ -1,9 +1,5 @@
 version: '2'
 services:
-  catinymessenger-app:
-    extends:
-      file: catiny-messenger.yml
-      service: catinymessenger-app
   catinymessenger-cassandra:
     extends:
       file: cassandra-cluster.yml
@@ -37,4 +33,4 @@ services:
       service: jhipster-registry
     environment:
       - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE=native
-      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_LOCATIONS=file:./central-config/docker-config/
+      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_LOCATIONS=file:./central-config/localhost-config/
