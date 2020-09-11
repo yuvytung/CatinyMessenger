@@ -2,8 +2,6 @@ version: '2'
 services:
   catinymessenger-cassandra:
     image: cassandra:3.11.5
-    volumes:
-      - /root/volumes/jhipster/CatinyMessenger/cassandra/:/var/lib/cassandra/data
     ports:
       - 12011:7000
       - 12012:7001

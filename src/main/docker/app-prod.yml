@@ -1,17 +1,18 @@
 version: '2'
 services:
-  catinymessenger-app:
-    extends:
-      file: catiny-messenger.yml
-      service: catinymessenger-app
   catinymessenger-cassandra:
     extends:
       file: cassandra-cluster.yml
       service: catinymessenger-cassandra
+    volumes:
+      - /root/volumes/jhipster/CatinyMessenger/cassandra/:/var/lib/cassandra/data
   catinymessenger-cassandra-node:
     extends:
       file: cassandra-cluster.yml
       service: catinymessenger-cassandra-node
+    volumes:
+      - /root/volumes/jhipster/CatinyMessenger/cassandra-node-1/:/var/lib/cassandra/data
+
   catinymessenger-cassandra-migration:
     extends:
       file: cassandra-cluster.yml
@@ -26,15 +27,8 @@ services:
       service: kafka
     environment:
       - KAFKA_ADVERTISED_HOST_NAME=kafka
-      - KAFKA_ADVERTISED_LISTENERS=LISTENER_PRIVATE://kafka:9092,LISTENER_PUBLIC://103.142.139.174:10400
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
   zookeeper:
     extends:
       file: kafka.yml
       service: zookeeper
-  jhipster-registry:
-    extends:
-      file: jhipster-registry.yml
-      service: jhipster-registry
-    environment:
-      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE=native
-      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_LOCATIONS=file:./central-config/docker-config/
