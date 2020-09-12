@@ -27,12 +27,12 @@ node {
 		try
 		{
 			sh 'docker container inspect docker_catinymessenger-cassandra_1'
-			sh 'docker container inspect docker_catinyuaa-redis_1'
+			sh 'docker container inspect docker_catinymessenger-redis_1'
 			sh "docker container inspect docker_jhipster-registry_1"
 			sh "docker container inspect docker_zookeeper_1"
 			sh "docker container inspect docker_kafka_1"
 		}
-		catch (err)
+		catch (ignored)
 		{
 			echo 'the necessary services are not running . try start it'
 			sh "docker-compose -f src/main/docker/app-prod.yml up -d"
@@ -73,12 +73,12 @@ node {
 		}
 	}
 
-	stage('build docker catiny-uaa')
+	stage('build docker catiny-messenger')
 	{
 		sh "./gradlew bootJar -Pprod jibDockerBuild --no-daemon"
 	}
 
-	stage('start docker catiny-uaa')
+	stage('start docker catiny-messenger')
 	{
 		sh "docker-compose -f src/main/docker/catiny-messenger.yml up -d"
 		echo "Successful deployment"
