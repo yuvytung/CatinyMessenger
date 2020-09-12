@@ -14,12 +14,9 @@ services:
   catinymessenger-cassandra-node:
     image: cassandra:3.11.5
     environment:
-      - CASSANDRA_SEEDS=catinymessenger-cassandra
-      - CASSANDRA_BROADCAST_ADDRESS=103.142.139.174
       - HEAP_NEWSIZE=128M
       - MAX_HEAP_SIZE=512M
-    ports:
-      - 12015:7000
+      - CASSANDRA_SEEDS=catinymessenger-cassandra
   catinymessenger-cassandra-migration:
     extends:
       file: cassandra-migration.yml
