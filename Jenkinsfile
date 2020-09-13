@@ -26,10 +26,12 @@ node {
 	{
 		try
 		{
+			sh 'docker container inspect docker_catinymessenger-cassandra_node_1'
 			sh 'docker container inspect docker_catinymessenger-cassandra_1'
 			sh 'docker container inspect docker_catinymessenger-redis_1'
 			sh "docker container inspect docker_jhipster-registry_1"
 			sh "docker container inspect docker_zookeeper_1"
+			sleep(10000)
 			sh "docker container inspect docker_kafka_1"
 		}
 		catch (ignored)
@@ -48,7 +50,7 @@ node {
 		catch (err)
 		{
 			echo "docker_jhipster-registry_1 is not running. try start catinyuaa"
-			sh "docker-compose -f /var/lib/jenkins/workspace/CatinyUAA_master/src/main/docker/catiny-uaa.yml up -d"
+//			sh "docker-compose -f /var/lib/jenkins/workspace/CatinyUAA_master/src/main/docker/catiny-uaa.yml up -d"
 			throw err
 		}
 	}
@@ -80,6 +82,7 @@ node {
 
 	stage('start docker catiny-messenger')
 	{
+		sh "docker-compose -f src/main/docker/app-prod.yml up -d"
 		sh "docker-compose -f src/main/docker/catiny-messenger.yml up -d"
 		echo "Successful deployment"
 	}

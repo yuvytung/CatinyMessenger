@@ -15,8 +15,8 @@
 
 yuvytung:
   server:
-    name: localhost
-
+    #    name: localhost
+    name: 103.142.139.174
 kafka:
   bootstrap-servers: ${yuvytung.server.name}:10400
 logging:
