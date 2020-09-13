@@ -85,4 +85,9 @@ node {
 		sh "docker-compose -f src/main/docker/catiny-messenger.yml up -d"
 		echo "Successful deployment"
 	}
+
+	stage( 'Log display after 200 seconds from running')
+	{
+		sh "docker logs docker_catinymessenger-app_1 --tail 1000"
+	}
 }
