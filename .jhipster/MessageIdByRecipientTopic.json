@@ -4,41 +4,37 @@
   "relationships": [],
   "fields": [
     {
-      "fieldName": "recipientID",
+      "fieldName": "recipientId",
       "fieldType": "UUID",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "topicID",
+      "fieldName": "topicId",
       "fieldType": "UUID",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "messageId",
+      "fieldType": "UUID"
     },
     {
       "fieldName": "createDate",
-      "fieldType": "Instant",
-      "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "messageID",
-      "fieldType": "UUID",
-      "fieldValidateRules": ["required"]
+      "fieldType": "Instant"
     },
     {
       "fieldName": "messageStatus",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldType": "String"
     },
     {
       "fieldName": "deletedStatus",
-      "fieldType": "Boolean",
-      "fieldValidateRules": ["required"]
+      "fieldType": "Boolean"
     }
   ],
   "changelogDate": "2020090111184",
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",
-  "entityTableName": "id_for_message_by_recipient_topic",
+  "entityTableName": "message_id_by_recipient_topic",
   "databaseType": "cassandra",
   "readOnly": false,
   "jpaMetamodelFiltering": false,

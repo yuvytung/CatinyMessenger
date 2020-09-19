@@ -9,12 +9,16 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "recipientId",
+      "fieldName": "messageId",
       "fieldType": "UUID",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "role",
+      "fieldName": "senderName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "messageContent",
       "fieldType": "String"
     },
     {
@@ -22,27 +26,28 @@
       "fieldType": "Instant"
     },
     {
-      "fieldName": "recipientName",
-      "fieldType": "String"
+      "fieldName": "modifyDate",
+      "fieldType": "Instant"
     },
     {
       "fieldName": "topicName",
       "fieldType": "String"
     },
     {
-      "fieldName": "adderId",
+      "fieldName": "senderId",
       "fieldType": "UUID"
     },
     {
-      "fieldName": "creatorId",
-      "fieldType": "UUID"
+      "fieldName": "deletedStatus",
+      "fieldType": "Boolean"
     }
+
   ],
   "changelogDate": "20200901111814",
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",
-  "entityTableName": "recipient_by_topic",
+  "entityTableName": "message_by_topic_messageId",
   "databaseType": "cassandra",
   "readOnly": false,
   "jpaMetamodelFiltering": false,

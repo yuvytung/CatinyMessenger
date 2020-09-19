@@ -4,19 +4,30 @@
   "relationships": [],
   "fields": [
     {
-      "fieldName": "recipientID",
+      "fieldName": "recipientId",
       "fieldType": "UUID",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "topicID",
+      "fieldName": "topicId",
       "fieldType": "UUID",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "senderName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String"
     },
     {
       "fieldName": "createDate",
-      "fieldType": "Instant",
-      "fieldValidateRules": ["required"]
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "senderId",
+      "fieldType": "UUID"
     },
     {
       "fieldName": "recipientName",
@@ -31,22 +42,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "senderID",
-      "fieldType": "UUID",
-      "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "senderName",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "messageContent",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "messageID",
+      "fieldName": "messageId",
       "fieldType": "UUID"
     }
   ],
