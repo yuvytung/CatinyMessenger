@@ -38,7 +38,7 @@
       "fieldType": "UUID"
     }
   ],
-  "changelogDate": "20200901111814",
+  "changelogDate": "20200901111815",
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",

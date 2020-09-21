@@ -30,7 +30,7 @@
       "fieldType": "Boolean"
     }
   ],
-  "changelogDate": "2020090111184",
+  "changelogDate": "20200901111816",
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",
