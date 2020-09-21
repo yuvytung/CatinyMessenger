@@ -2,10 +2,8 @@ package org.regitiny.catiny.messenger.domain;
 
 import lombok.ToString;
 import org.regitiny.catiny.messenger.domain.key.MessageSimpleByRecipientKey;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.cassandra.core.mapping.Table;
 
-import javax.validation.constraints.*;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.io.Serializable;
 import java.time.Instant;

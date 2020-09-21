@@ -9,18 +9,17 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Getter
-@Setter
-@ToString
+@Data
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class MessageSimpleByRecipientKey
+public class RecipientByTopicKey
 {
-  @NotNull
-  @PrimaryKeyColumn(name = "recipientId", type = PrimaryKeyType.PARTITIONED)
-  protected UUID recipientId;
 
   @NotNull
-  @PrimaryKeyColumn(name = "topicId", ordinal = 0)
+  @PrimaryKeyColumn(name = "topicId", type = PrimaryKeyType.PARTITIONED)
   protected UUID topicId;
+
+  @NotNull
+  @PrimaryKeyColumn(name = "recipientId", ordinal = 0)
+  protected UUID recipientId;
 }
