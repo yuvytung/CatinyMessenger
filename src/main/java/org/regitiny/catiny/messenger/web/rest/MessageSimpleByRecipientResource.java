@@ -127,13 +127,13 @@ public class MessageSimpleByRecipientResource implements MessageSimpleByRecipien
   @GetMapping("/pk")
   public ResponseEntity<MessageSimpleByRecipientDTO> getMessageSimpleByPk(@RequestParam UUID recipientId, @RequestParam UUID topicId)
   {
-    log.debug("REST request to get MessageSimpleByRecipient , recipientId = {} ,  topicId = {} " , recipientId,topicId);
-    MessageSimpleByRecipientDTO messageSimpleByRecipientDTO = messageSimpleByRecipientService.fetchOne(recipientId , topicId);
+    log.debug("REST request to get MessageSimpleByRecipient , recipientId = {} ,  topicId = {} ", recipientId, topicId);
+    MessageSimpleByRecipientDTO messageSimpleByRecipientDTO = messageSimpleByRecipientService.fetchOne(recipientId, topicId);
     return ResponseEntity.ok(messageSimpleByRecipientDTO);
   }
 
   @GetMapping("/last-each-topic")
-  public ResponseEntity<List<MessageSimpleByRecipientDTO>> getMessageSimpleByPk(@RequestParam  UUID recipientId)
+  public ResponseEntity<List<MessageSimpleByRecipientDTO>> getMessageSimpleByPk(@RequestParam UUID recipientId)
   {
     log.debug("REST request to get MessageSimpleByRecipient , recipientId = {} ", recipientId);
     List<MessageSimpleByRecipientDTO> messageSimpleByRecipientDTO = messageSimpleByRecipientService.findByRecipientId(recipientId);

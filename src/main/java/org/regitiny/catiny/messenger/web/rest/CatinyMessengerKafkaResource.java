@@ -83,6 +83,7 @@ public class CatinyMessengerKafkaResource
     });
     return emitter;
   }
+
   @GetMapping
   public String pipi()
   {

@@ -29,35 +29,29 @@ public interface MessageSimpleByRecipientService
    */
   List<MessageSimpleByRecipientDTO> findAll();
 
-
   /**
-   * Get the "id" messageSimpleByRecipient.
+   * Delete the messageSimpleByRecipient by primary key.
    *
-   * @param id the id of the entity.
-   * @return the entity.
-   */
-//    Optional<MessageSimpleByRecipientDTO> findOne(UUID id);
-
-
-  /**
-   * Delete the "id" messageSimpleByRecipient.
-   *
-   * @param recipientId the id of the entity.
-   * @param topicId the id of the entity.
+   * @param recipientId and {@param topicId} is the primary key of the entity.
    */
   void delete(UUID recipientId, UUID topicId);
 
 
   /**
-   * Get the "id" messageSimpleByRecipient.
+   * Get one messageSimpleByRecipient by primary key.
    *
-   * @param recipientId the partitionKey of the entity
-   * @param topicId     the clusterKey of the entity.
+   * @param recipientId is the partitionKey of the entity
+   * @param topicId     is the clusterKey of the entity.
    * @return the entity.
    */
   MessageSimpleByRecipientDTO fetchOne(UUID recipientId, UUID topicId);
 
 
+  /**
+   * Get the messageSimpleByRecipients by recipientId.
+   *
+   * @param recipientId is the partition key of the entity.
+   */
   List<MessageSimpleByRecipientDTO> findByRecipientId(UUID recipientId);
 
 }

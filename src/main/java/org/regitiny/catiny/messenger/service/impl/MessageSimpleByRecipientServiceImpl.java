@@ -1,6 +1,5 @@
 package org.regitiny.catiny.messenger.service.impl;
 
-import org.regitiny.catiny.messenger.domain.key.MessageSimpleByRecipientKey;
 import org.regitiny.catiny.messenger.service.MessageSimpleByRecipientService;
 import org.regitiny.catiny.messenger.domain.MessageSimpleByRecipient;
 import org.regitiny.catiny.messenger.repository.MessageSimpleByRecipientRepository;
