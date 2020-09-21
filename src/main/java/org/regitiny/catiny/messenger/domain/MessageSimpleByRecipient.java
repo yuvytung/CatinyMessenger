@@ -13,6 +13,7 @@ import java.util.UUID;
 
 /**
  * A MessageSimpleByRecipient.
+ * primary key is MessageSimpleByRecipientKey ( (recipientId),topicId )
  */
 @ToString
 @Table("messageSimpleByRecipient")
@@ -180,16 +181,18 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
   }
   // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) {
-//            return true;
-//        }
-//        if (!(o instanceof MessageSimpleByRecipient)) {
-//            return false;
-//        }
-//        return id != null && id.equals(((MessageSimpleByRecipient) o).id);
-//    }
+  @Override
+  public boolean equals(Object o)
+  {
+    if (this == o)
+      return true;
+    if (!(o instanceof MessageSimpleByRecipient))
+      return false;
+    return (recipientId != null) &&
+      (topicId != null) &&
+      recipientId.equals(((MessageSimpleByRecipient) o).recipientId) &&
+      topicId.equals(((MessageSimpleByRecipient) o).topicId);
+  }
 
   @Override
   public int hashCode()

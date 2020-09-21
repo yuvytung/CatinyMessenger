@@ -61,7 +61,7 @@ public class MessageSimpleByRecipientServiceImpl implements MessageSimpleByRecip
   }
 
   @Override
-  public MessageSimpleByRecipientDTO findOneByRecipientIdAndTopicId(UUID recipientId, UUID topicId)
+  public MessageSimpleByRecipientDTO fetchOne(UUID recipientId, UUID topicId)
   {
     log.debug("Request to get MessageSimpleByRecipient . recipientId :{} and topicId :{}", recipientId, topicId);
     MessageSimpleByRecipient messageSimple = messageSimpleByRecipientRepository.findOneByRecipientIdAndTopicId(recipientId, topicId);

@@ -6,7 +6,9 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class MessageSimpleByRecipientKey

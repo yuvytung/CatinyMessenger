@@ -55,7 +55,7 @@ public interface MessageSimpleByRecipientService
    * @param topicId     the clusterKey of the entity.
    * @return the entity.
    */
-  MessageSimpleByRecipientDTO findOneByRecipientIdAndTopicId(UUID recipientId, UUID topicId);
+  MessageSimpleByRecipientDTO fetchOne(UUID recipientId, UUID topicId);
 
 
   List<MessageSimpleByRecipientDTO> findByRecipientId(UUID recipientId);

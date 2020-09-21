@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.UUID;
  * REST controller for managing {@link org.regitiny.catiny.messenger.domain.MessageSimpleByRecipient}.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/message-simple")
 public class MessageSimpleByRecipientResource implements MessageSimpleByRecipientApi
 {
 
@@ -43,13 +44,13 @@ public class MessageSimpleByRecipientResource implements MessageSimpleByRecipien
     this.messageSimpleByRecipientService = messageSimpleByRecipientService;
   }
 
-  /**
-   * {@code POST  /message-simple-by-recipients} : Create a new messageSimpleByRecipient.
-   *
-   * @param messageSimpleByRecipientDTO the messageSimpleByRecipientDTO to create.
-   * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new messageSimpleByRecipientDTO, or with status {@code 400 (Bad Request)} if the messageSimpleByRecipient has already an ID.
-   * @throws URISyntaxException if the Location URI syntax is incorrect.
-   */
+//  /**
+//   * {@code POST  /message-simple-by-recipients} : Create a new messageSimpleByRecipient.
+//   *
+//   * @param messageSimpleByRecipientDTO the messageSimpleByRecipientDTO to create.
+//   * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new messageSimpleByRecipientDTO, or with status {@code 400 (Bad Request)} if the messageSimpleByRecipient has already an ID.
+//   * @throws URISyntaxException if the Location URI syntax is incorrect.
+//   */
 //    @PostMapping("/message-simple-by-recipients")
 //    public ResponseEntity<MessageSimpleByRecipientDTO> createMessageSimpleByRecipient(@Valid @RequestBody MessageSimpleByRecipientDTO messageSimpleByRecipientDTO) throws URISyntaxException {
 //        log.debug("REST request to save MessageSimpleByRecipient : {}", messageSimpleByRecipientDTO);
@@ -63,15 +64,15 @@ public class MessageSimpleByRecipientResource implements MessageSimpleByRecipien
 //            .body(result);
 //    }
 
-  /**
-   * {@code PUT  /message-simple-by-recipients} : Updates an existing messageSimpleByRecipient.
-   *
-   * @param messageSimpleByRecipientDTO the messageSimpleByRecipientDTO to update.
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated messageSimpleByRecipientDTO,
-   * or with status {@code 400 (Bad Request)} if the messageSimpleByRecipientDTO is not valid,
-   * or with status {@code 500 (Internal Server Error)} if the messageSimpleByRecipientDTO couldn't be updated.
-   * @throws URISyntaxException if the Location URI syntax is incorrect.
-   */
+//  /**
+//   * {@code PUT  /message-simple-by-recipients} : Updates an existing messageSimpleByRecipient.
+//   *
+//   * @param messageSimpleByRecipientDTO the messageSimpleByRecipientDTO to update.
+//   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated messageSimpleByRecipientDTO,
+//   * or with status {@code 400 (Bad Request)} if the messageSimpleByRecipientDTO is not valid,
+//   * or with status {@code 500 (Internal Server Error)} if the messageSimpleByRecipientDTO couldn't be updated.
+//   * @throws URISyntaxException if the Location URI syntax is incorrect.
+//   */
 //    @PutMapping("/message-simple-by-recipients")
 //    public ResponseEntity<MessageSimpleByRecipientDTO> updateMessageSimpleByRecipient(@Valid @RequestBody MessageSimpleByRecipientDTO messageSimpleByRecipientDTO) throws URISyntaxException {
 //        log.debug("REST request to update MessageSimpleByRecipient : {}", messageSimpleByRecipientDTO);
@@ -84,24 +85,12 @@ public class MessageSimpleByRecipientResource implements MessageSimpleByRecipien
 //            .body(result);
 //    }
 
-  /**
-   * {@code GET  /message-simple-by-recipients} : get all the messageSimpleByRecipients.
-   *
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of messageSimpleByRecipients in body.
-   */
-  @GetMapping("/message-simple-by-recipients")
-  public List<MessageSimpleByRecipientDTO> getAllMessageSimpleByRecipients()
-  {
-    log.debug("REST request to get all MessageSimpleByRecipients");
-    return messageSimpleByRecipientService.findAll();
-  }
-
-  /**
-   * {@code GET  /message-simple-by-recipients/:id} : get the "id" messageSimpleByRecipient.
-   *
-   * @param id the id of the messageSimpleByRecipientDTO to retrieve.
-   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the messageSimpleByRecipientDTO, or with status {@code 404 (Not Found)}.
-   */
+//  /**
+//   * {@code GET  /message-simple-by-recipients/:id} : get the "id" messageSimpleByRecipient.
+//   *
+//   * @param id the id of the messageSimpleByRecipientDTO to retrieve.
+//   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the messageSimpleByRecipientDTO, or with status {@code 404 (Not Found)}.
+//   */
 //    @GetMapping("/message-simple-by-recipients/{id}")
 //    public ResponseEntity<MessageSimpleByRecipientDTO> getMessageSimpleByRecipient(@PathVariable UUID id) {
 //        log.debug("REST request to get MessageSimpleByRecipient : {}", id);
@@ -110,27 +99,46 @@ public class MessageSimpleByRecipientResource implements MessageSimpleByRecipien
 //    }
 
   /**
-   * {@code DELETE  /message-simple-by-recipients/:id} : delete the "id" messageSimpleByRecipient.
+   * {@code DELETE  /pk} : delete the "id" messageSimpleByRecipient.
    *
-   * @param recipientId the id of the messageSimpleByRecipientDTO to delete.
-   * @param topicId
+   * @param recipientId and {@param topicId} is the primaryKey of the messageSimpleByRecipientDTO to delete.
    * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
    */
-  @DeleteMapping("/message-simple-by-recipients/{recipientId}/{topicId}")
-  public ResponseEntity<Void> deleteMessageSimpleByRecipient(@PathVariable UUID recipientId , @PathVariable UUID topicId)
+  @DeleteMapping("/pk")
+  public ResponseEntity<Void> deleteMessageSimpleByPK(@RequestParam UUID recipientId, @RequestParam UUID topicId)
   {
     log.debug("REST request to delete MessageSimpleByRecipient : {}", recipientId);
     messageSimpleByRecipientService.delete(recipientId, topicId);
-    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, "recipientId" + recipientId.toString() +", topicId: " + topicId.toString() )).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, "recipientId" + recipientId.toString() + ", topicId: " + topicId.toString())).build();
   }
 
-  @GetMapping("/message-simple-by-recipients/")
-  public ResponseEntity<MessageSimpleByRecipientDTO> getMessageSimpleByRecipient()
+  /**
+   * {@code GET  /all} : get all the messageSimpleByRecipients.
+   *
+   * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of messageSimpleByRecipients in body.
+   */
+  @GetMapping("/all")
+  public List<MessageSimpleByRecipientDTO> getAllMessageSimple()
   {
-    log.debug("REST request to get MessageSimpleByRecipient : {}");
-    UUID uuid = UUID.fromString("7d793ef0-fa7f-11ea-a043-fbc1d99c17dc");
-    UUID uuid2 = UUID.fromString("7d793ef1-fa7f-11ea-a043-fbc1d99c17dc");
-    MessageSimpleByRecipientDTO messageSimpleByRecipientDTO = messageSimpleByRecipientService.findOneByRecipientIdAndTopicId(uuid, uuid2);
+    log.debug("REST request to get all MessageSimpleByRecipients");
+    return messageSimpleByRecipientService.findAll();
+  }
+
+  @GetMapping("/pk")
+  public ResponseEntity<MessageSimpleByRecipientDTO> getMessageSimpleByPk(@RequestParam UUID recipientId, @RequestParam UUID topicId)
+  {
+    log.debug("REST request to get MessageSimpleByRecipient , recipientId = {} ,  topicId = {} " , recipientId,topicId);
+    MessageSimpleByRecipientDTO messageSimpleByRecipientDTO = messageSimpleByRecipientService.fetchOne(recipientId , topicId);
     return ResponseEntity.ok(messageSimpleByRecipientDTO);
   }
+
+  @GetMapping("/last-each-topic")
+  public ResponseEntity<List<MessageSimpleByRecipientDTO>> getMessageSimpleByPk(@RequestParam  UUID recipientId)
+  {
+    log.debug("REST request to get MessageSimpleByRecipient , recipientId = {} ", recipientId);
+    List<MessageSimpleByRecipientDTO> messageSimpleByRecipientDTO = messageSimpleByRecipientService.findByRecipientId(recipientId);
+    return ResponseEntity.ok(messageSimpleByRecipientDTO);
+  }
+
+
 }
