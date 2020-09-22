@@ -18,7 +18,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table("recipientByTopic")
 public class RecipientByTopic extends RecipientByTopicKey implements Serializable
 {
@@ -111,7 +110,7 @@ public class RecipientByTopic extends RecipientByTopicKey implements Serializabl
   public String toString()
   {
     return "RecipientByTopic{" +
-      ", topicId='" + getTopicId() + "'" +
+      " topicId='" + getTopicId() + "'" +
       ", recipientId='" + getRecipientId() + "'" +
       ", role='" + getRole() + "'" +
       ", createDate='" + getCreateDate() + "'" +

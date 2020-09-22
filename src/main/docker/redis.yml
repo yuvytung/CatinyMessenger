@@ -3,4 +3,4 @@ services:
   catinymessenger-redis:
     image: redis:6.0.4
     ports:
-      - '13010:6379'
+      - 13010:6379

@@ -55,10 +55,10 @@ public class RecipientByTopicServiceImpl implements RecipientByTopicService
 
 
   @Override
-  public Optional<RecipientByTopicDTO> fetchOne(UUID topicId, UUID recipientId)
+  public RecipientByTopicDTO fetchOne(UUID topicId, UUID recipientId)
   {
     log.debug("Request to get RecipientByTopic , topicId = {} , recipientId = {} ", topicId, recipientId);
-    return recipientByTopicRepository.findOneByTopicIdAndRecipientId(topicId, recipientId).map(recipientByTopicMapper::toDto);
+    return recipientByTopicMapper.toDto(recipientByTopicRepository.findOneByTopicIdAndRecipientId(topicId, recipientId));
   }
 
   @Override
@@ -71,7 +71,14 @@ public class RecipientByTopicServiceImpl implements RecipientByTopicService
   @Override
   public List<RecipientByTopicDTO> findByTopic(UUID topicId)
   {
-    List<RecipientByTopic> recipientByTopics = recipientByTopicRepository.findByTopicId(topicId);
-    return recipientByTopicMapper.toDto(recipientByTopics);
+    return recipientByTopicMapper.toDto( recipientByTopicRepository.findByTopicId(topicId));
+  }
+
+  @Override
+  public RecipientByTopic create()
+  {
+    return recipientByTopicRepository.save(new RecipientByTopic().
+      topicId(UUID.randomUUID()).
+      recipientId(UUID.randomUUID()));
   }
 }

@@ -1,43 +1,75 @@
 package org.regitiny.catiny.messenger.web.rest;
 
-import org.regitiny.catiny.messenger.service.RecipientByTopicService;
-import org.regitiny.catiny.messenger.web.rest.errors.BadRequestAlertException;
-import org.regitiny.catiny.messenger.service.dto.RecipientByTopicDTO;
-
 import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import io.netty.handler.codec.HeadersUtils;
+import org.json.JSONObject;
+import org.regitiny.catiny.messenger.domain.RecipientByTopic;
+import org.regitiny.catiny.messenger.service.RecipientByTopicService;
+import org.regitiny.catiny.messenger.service.dto.RecipientByTopicDTO;
+import org.regitiny.catiny.messenger.service.mapper.RecipientByTopicMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 /**
  * REST controller for managing {@link org.regitiny.catiny.messenger.domain.RecipientByTopic}.
  */
 @RestController
 @RequestMapping("/api/recipient")
-public class RecipientByTopicResource {
+public class RecipientByTopicResource
+{
 
-//    private final Logger log = LoggerFactory.getLogger(RecipientByTopicResource.class);
-//
-//    private static final String ENTITY_NAME = "catinyMessengerRecipientByTopic";
-//
-//    @Value("${jhipster.clientApp.name}")
-//    private String applicationName;
-//
-//    private final RecipientByTopicService recipientByTopicService;
-//
-//    public RecipientByTopicResource(RecipientByTopicService recipientByTopicService) {
-//        this.recipientByTopicService = recipientByTopicService;
-//    }
+  private final Logger log = LoggerFactory.getLogger(RecipientByTopicResource.class);
+
+  private static final String ENTITY_NAME = "catinyMessengerRecipientByTopic";
+
+  @Value("${jhipster.clientApp.name}")
+  private String applicationName;
+
+  private final RecipientByTopicService recipientByTopicService;
+
+  private final RecipientByTopicMapper recipientByTopicMapper;
+
+  public RecipientByTopicResource(RecipientByTopicService recipientByTopicService, RecipientByTopicMapper recipientByTopicMapper)
+  {
+    this.recipientByTopicService = recipientByTopicService;
+    this.recipientByTopicMapper = recipientByTopicMapper;
+  }
+
+
+  /**
+   * {@code POST  /services/check} : recipientByTopic check CRUD .
+   *
+   * @param requestParam the recipientByTopicDTO to create.
+   * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new recipientByTopicDTO, or with status {@code 400 (Bad Request)} if the recipientByTopic has already an ID.
+   * @throws URISyntaxException if the Location URI syntax is incorrect.
+   */
+  @PostMapping("/services/check")
+  public ResponseEntity<String> createRecipientByTopic(@RequestParam String requestParam) throws URISyntaxException
+  {
+    log.debug("REST requestParem : {}", requestParam);
+    JSONObject jsonObject = new JSONObject();
+    RecipientByTopic recipient = recipientByTopicService.create();
+    jsonObject.put("createResult", recipientByTopicMapper.toDto(recipient).toJsonObject());
+    recipient.setRecipientName("new name Update");
+    RecipientByTopicDTO recipientByTopicDTO = recipientByTopicService.save(recipientByTopicMapper.toDto(recipient));
+    jsonObject.put("UpdateByDTO", recipientByTopicDTO.toJsonObject());
+    List<RecipientByTopicDTO> recipientByTopics = recipientByTopicService.findByTopic(recipientByTopicDTO.getTopicId());
+    jsonObject.put("getByTopicId", recipientByTopics);
+    jsonObject.put("deleteStatus", recipientByTopicService.delete(recipientByTopicDTO.getTopicId(),recipientByTopicDTO.getRecipientId()));
+
+    RecipientByTopicDTO recipientByTopicDTOxxx = recipientByTopicDTO.fromJson(recipientByTopicDTO.toJsonString());
+    jsonObject.put("test Cái này ok thì ngon" , recipientByTopicDTOxxx.toJsonString());
+    return ResponseEntity.ok(jsonObject.toString());
+  }
+
 //
 //    /**
 //     * {@code POST  /recipient-by-topics} : Create a new recipientByTopic.

@@ -11,6 +11,7 @@ import java.util.UUID;
 
 public class MessageSimpleByRecipientDTOTest
 {
+  @Test
   public void dtoEqualsVerifier() throws Exception
   {
 

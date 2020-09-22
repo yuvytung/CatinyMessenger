@@ -1,5 +1,6 @@
 package org.regitiny.catiny.messenger.service;
 
+import org.regitiny.catiny.messenger.domain.RecipientByTopic;
 import org.regitiny.catiny.messenger.service.dto.RecipientByTopicDTO;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public interface RecipientByTopicService
    * @param recipientId is the cluster key of entity.
    * @return the entity.
    */
-  Optional<RecipientByTopicDTO> fetchOne(UUID topicId , UUID recipientId);
+  RecipientByTopicDTO fetchOne(UUID topicId , UUID recipientId);
 
 
   /**
@@ -56,4 +57,7 @@ public interface RecipientByTopicService
      * @return if return true is the deleted successful else false is the failure.
      */
   List<RecipientByTopicDTO> findByTopic(UUID topicId);
+
+
+  RecipientByTopic create();
 }

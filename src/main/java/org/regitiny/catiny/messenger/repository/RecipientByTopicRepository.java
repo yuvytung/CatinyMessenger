@@ -2,7 +2,7 @@ package org.regitiny.catiny.messenger.repository;
 
 import org.regitiny.catiny.messenger.domain.RecipientByTopic;
 
-import org.regitiny.catiny.messenger.domain.key.RecipientByTopicKey;
+import org.regitiny.catiny.messenger.service.dto.RecipientByTopicDTO;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +15,12 @@ import java.util.UUID;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface RecipientByTopicRepository extends CassandraRepository<RecipientByTopic, RecipientByTopicKey>
+public interface RecipientByTopicRepository extends CassandraRepository<RecipientByTopic, UUID>
 {
-  Optional<RecipientByTopic> findOneByTopicIdAndRecipientId(UUID topicId, UUID recipientId);
+  RecipientByTopic findOneByTopicIdAndRecipientId(UUID topicId, UUID recipientId);
 
-  Boolean deleteOneByTopicIdAndRecipientId(UUID topicId , UUID recipientId);
+  Boolean deleteOneByTopicIdAndRecipientId(UUID topicId,UUID recipientId);
 
   List<RecipientByTopic> findByTopicId(UUID topicId);
+
 }

@@ -16,7 +16,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table("messageSimpleByRecipient")
 public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implements Serializable
 {
@@ -120,6 +119,23 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
   public int hashCode()
   {
     return 31;
+  }
+
+  @Override
+  public String toString()
+  {
+    return "MessageSimpleByRecipientDTO{" +
+      "recipientId=" + recipientId +
+      ", topicId=" + topicId +
+      ", senderName='" + senderName + '\'' +
+      ", content='" + content + '\'' +
+      ", createDate=" + createDate +
+      ", senderId=" + senderId +
+      ", recipientName='" + recipientName + '\'' +
+      ", topicName='" + topicName + '\'' +
+      ", messageStatus='" + messageStatus + '\'' +
+      ", messageId=" + messageId +
+      '}';
   }
 
 }

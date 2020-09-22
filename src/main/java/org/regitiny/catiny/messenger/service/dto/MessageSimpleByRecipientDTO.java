@@ -1,8 +1,7 @@
 package org.regitiny.catiny.messenger.service.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import com.google.gson.Gson;
+import lombok.*;
 
 import java.time.Instant;
 import javax.validation.constraints.*;
@@ -12,9 +11,11 @@ import java.util.UUID;
 /**
  * A DTO for the {@link org.regitiny.catiny.messenger.domain.MessageSimpleByRecipient} entity.
  */
-@Getter
-@Setter
-public class MessageSimpleByRecipientDTO implements Serializable
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageSimpleByRecipientDTO extends JsonMagic implements Serializable
 {
 
   @NotNull
@@ -40,9 +41,39 @@ public class MessageSimpleByRecipientDTO implements Serializable
   private UUID messageId;
 
   @Override
+  public boolean equals(Object o)
+  {
+    if (this == o)
+      return true;
+    if (!(o instanceof MessageSimpleByRecipientDTO))
+      return false;
+    return (recipientId != null) &&
+      (topicId != null) &&
+      topicId.equals(((MessageSimpleByRecipientDTO) o).topicId) &&
+      recipientId.equals(((MessageSimpleByRecipientDTO) o).recipientId);
+  }
+
+  @Override
   public int hashCode()
   {
     return 31;
+  }
+
+  @Override
+  public String toString()
+  {
+    return "MessageSimpleByRecipientDTO{" +
+      "recipientId=" + recipientId +
+      ", topicId=" + topicId +
+      ", senderName='" + senderName + '\'' +
+      ", content='" + content + '\'' +
+      ", createDate=" + createDate +
+      ", senderId=" + senderId +
+      ", recipientName='" + recipientName + '\'' +
+      ", topicName='" + topicName + '\'' +
+      ", messageStatus='" + messageStatus + '\'' +
+      ", messageId=" + messageId +
+      '}';
   }
 
 }

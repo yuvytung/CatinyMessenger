@@ -1,7 +1,7 @@
 package org.regitiny.catiny.messenger.service.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.*;
 
 import java.time.Instant;
 import javax.validation.constraints.*;
@@ -11,9 +11,11 @@ import java.util.UUID;
 /**
  * A DTO for the {@link org.regitiny.catiny.messenger.domain.RecipientByTopic} entity.
  */
-@Getter
-@Setter
-public class RecipientByTopicDTO implements Serializable
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class RecipientByTopicDTO extends JsonMagic implements Serializable
 {
 
   @NotNull
@@ -58,7 +60,7 @@ public class RecipientByTopicDTO implements Serializable
   public String toString()
   {
     return "RecipientByTopicDTO{" +
-      ", topicId='" + getTopicId() + "'" +
+      " topicId='" + getTopicId() + "'" +
       ", recipientId='" + getRecipientId() + "'" +
       ", role='" + getRole() + "'" +
       ", createDate='" + getCreateDate() + "'" +
