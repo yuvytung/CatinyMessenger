@@ -1,9 +1,7 @@
 package org.regitiny.catiny.messenger.domain.key;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyClass;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 
 import javax.validation.constraints.NotNull;
@@ -11,9 +9,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
-@AllArgsConstructor
 public class MessageSimpleByRecipientKey
 {
   @NotNull

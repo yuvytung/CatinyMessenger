@@ -1,9 +1,11 @@
 package org.regitiny.catiny.messenger.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.regitiny.catiny.messenger.domain.key.RecipientByTopicKey;
 import org.springframework.data.cassandra.core.mapping.Table;
-
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -13,6 +15,10 @@ import java.util.UUID;
  * A RecipientByTopic.
  * primary key of RecipientByTopic is ( (topicId) , recipientId )
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table("recipientByTopic")
 public class RecipientByTopic extends RecipientByTopicKey implements Serializable
 {
@@ -32,25 +38,10 @@ public class RecipientByTopic extends RecipientByTopicKey implements Serializabl
 
   // jhipster-needle-entity-add-field - JHipster will add fields here
 
-  public UUID getTopicId()
-  {
-    return topicId;
-  }
-
   public RecipientByTopic topicId(UUID topicId)
   {
     this.topicId = topicId;
     return this;
-  }
-
-  public void setTopicId(UUID topicId)
-  {
-    this.topicId = topicId;
-  }
-
-  public UUID getRecipientId()
-  {
-    return recipientId;
   }
 
   public RecipientByTopic recipientId(UUID recipientId)
@@ -59,30 +50,10 @@ public class RecipientByTopic extends RecipientByTopicKey implements Serializabl
     return this;
   }
 
-  public void setRecipientId(UUID recipientId)
-  {
-    this.recipientId = recipientId;
-  }
-
-  public String getRole()
-  {
-    return role;
-  }
-
   public RecipientByTopic role(String role)
   {
     this.role = role;
     return this;
-  }
-
-  public void setRole(String role)
-  {
-    this.role = role;
-  }
-
-  public Instant getCreateDate()
-  {
-    return createDate;
   }
 
   public RecipientByTopic createDate(Instant createDate)
@@ -91,30 +62,10 @@ public class RecipientByTopic extends RecipientByTopicKey implements Serializabl
     return this;
   }
 
-  public void setCreateDate(Instant createDate)
-  {
-    this.createDate = createDate;
-  }
-
-  public String getRecipientName()
-  {
-    return recipientName;
-  }
-
   public RecipientByTopic recipientName(String recipientName)
   {
     this.recipientName = recipientName;
     return this;
-  }
-
-  public void setRecipientName(String recipientName)
-  {
-    this.recipientName = recipientName;
-  }
-
-  public String getTopicName()
-  {
-    return topicName;
   }
 
   public RecipientByTopic topicName(String topicName)
@@ -123,30 +74,10 @@ public class RecipientByTopic extends RecipientByTopicKey implements Serializabl
     return this;
   }
 
-  public void setTopicName(String topicName)
-  {
-    this.topicName = topicName;
-  }
-
-  public UUID getAdderId()
-  {
-    return adderId;
-  }
-
   public RecipientByTopic adderId(UUID adderId)
   {
     this.adderId = adderId;
     return this;
-  }
-
-  public void setAdderId(UUID adderId)
-  {
-    this.adderId = adderId;
-  }
-
-  public UUID getCreatorId()
-  {
-    return creatorId;
   }
 
   public RecipientByTopic creatorId(UUID creatorId)
@@ -155,10 +86,6 @@ public class RecipientByTopic extends RecipientByTopicKey implements Serializabl
     return this;
   }
 
-  public void setCreatorId(UUID creatorId)
-  {
-    this.creatorId = creatorId;
-  }
   // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
   public boolean equals(Object o)

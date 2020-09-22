@@ -1,6 +1,6 @@
 package org.regitiny.catiny.messenger.domain;
 
-import lombok.ToString;
+import lombok.*;
 import org.regitiny.catiny.messenger.domain.key.MessageSimpleByRecipientKey;
 
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -13,7 +13,10 @@ import java.util.UUID;
  * A MessageSimpleByRecipient.
  * primary key of MessageSimpleByRecipientKey ( (recipientId),topicId )
  */
-@ToString
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table("messageSimpleByRecipient")
 public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implements Serializable
 {
@@ -50,25 +53,10 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
     return this;
   }
 
-  public String getSenderName()
-  {
-    return senderName;
-  }
-
   public MessageSimpleByRecipient senderName(String senderName)
   {
     this.senderName = senderName;
     return this;
-  }
-
-  public void setSenderName(String senderName)
-  {
-    this.senderName = senderName;
-  }
-
-  public String getContent()
-  {
-    return content;
   }
 
   public MessageSimpleByRecipient content(String content)
@@ -77,30 +65,10 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
     return this;
   }
 
-  public void setContent(String content)
-  {
-    this.content = content;
-  }
-
-  public Instant getCreateDate()
-  {
-    return createDate;
-  }
-
   public MessageSimpleByRecipient createDate(Instant createDate)
   {
     this.createDate = createDate;
     return this;
-  }
-
-  public void setCreateDate(Instant createDate)
-  {
-    this.createDate = createDate;
-  }
-
-  public UUID getSenderId()
-  {
-    return senderId;
   }
 
   public MessageSimpleByRecipient senderId(UUID senderId)
@@ -109,30 +77,10 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
     return this;
   }
 
-  public void setSenderId(UUID senderId)
-  {
-    this.senderId = senderId;
-  }
-
-  public String getRecipientName()
-  {
-    return recipientName;
-  }
-
   public MessageSimpleByRecipient recipientName(String recipientName)
   {
     this.recipientName = recipientName;
     return this;
-  }
-
-  public void setRecipientName(String recipientName)
-  {
-    this.recipientName = recipientName;
-  }
-
-  public String getTopicName()
-  {
-    return topicName;
   }
 
   public MessageSimpleByRecipient topicName(String topicName)
@@ -141,30 +89,10 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
     return this;
   }
 
-  public void setTopicName(String topicName)
-  {
-    this.topicName = topicName;
-  }
-
-  public String getMessageStatus()
-  {
-    return messageStatus;
-  }
-
   public MessageSimpleByRecipient messageStatus(String messageStatus)
   {
     this.messageStatus = messageStatus;
     return this;
-  }
-
-  public void setMessageStatus(String messageStatus)
-  {
-    this.messageStatus = messageStatus;
-  }
-
-  public UUID getMessageId()
-  {
-    return messageId;
   }
 
   public MessageSimpleByRecipient messageId(UUID messageId)
@@ -173,10 +101,6 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
     return this;
   }
 
-  public void setMessageId(UUID messageId)
-  {
-    this.messageId = messageId;
-  }
   // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
   @Override
