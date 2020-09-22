@@ -9,7 +9,7 @@ import java.util.List;
  * @param <E> - Entity type parameter.
  */
 
-public interface EntityMapper<D, E> {
+public interface EntityMapper <D, E> {
 
     E toEntity(D dto);
 

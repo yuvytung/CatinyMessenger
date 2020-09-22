@@ -49,5 +49,11 @@ public interface RecipientByTopicService
   boolean delete(UUID topicId , UUID recipientId);
 
 
+    /**
+     * get recipient by topicId.
+     *
+     * @param topicId is the partition key of the entity.
+     * @return if return true is the deleted successful else false is the failure.
+     */
   List<RecipientByTopicDTO> findByTopic(UUID topicId);
 }

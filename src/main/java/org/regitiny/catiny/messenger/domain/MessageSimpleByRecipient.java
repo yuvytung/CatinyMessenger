@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * A MessageSimpleByRecipient.
- * primary key is MessageSimpleByRecipientKey ( (recipientId),topicId )
+ * primary key of MessageSimpleByRecipientKey ( (recipientId),topicId )
  */
 @ToString
 @Table("messageSimpleByRecipient")
