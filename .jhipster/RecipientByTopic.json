@@ -1,0 +1,51 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "CatinyMessenger",
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "topicId",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "recipientId",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "recipientName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "topicName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adderId",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "creatorId",
+      "fieldType": "UUID"
+    }
+  ],
+  "changelogDate": "20200901111815",
+  "dto": "mapstruct",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "recipient_by_topic",
+  "databaseType": "cassandra",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no",
+  "microserviceName": "CatinyMessenger"
+}

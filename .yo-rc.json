@@ -1,0 +1,42 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "org.regitiny.catiny.messenger",
+      "nativeLanguage": "vi"
+    },
+    "jhipsterVersion": "6.10.1",
+    "applicationType": "microservice",
+    "baseName": "CatinyMessenger",
+    "packageName": "org.regitiny.catiny.messenger",
+    "packageFolder": "org/regitiny/catiny/messenger",
+    "serverPort": "10010",
+    "authenticationType": "uaa",
+    "uaaBaseName": "CatinyUAA",
+    "cacheProvider": "redis",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "cassandra",
+    "devDatabaseType": "cassandra",
+    "prodDatabaseType": "cassandra",
+    "searchEngine": false,
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "NmZhZDY1NWMzNDBhMzk0M2UwZGVmODJmYWE0ZTVlYmY4NWE3YzAxOGE3ZWNlMzI2ZTY3YTU0ZjU1YTkwY2Q0NjU2ZDQzODIwZGQ3ZGFjODExNjU1YTJkOTVlYjc1YWYxM2RlNjYxYWEzNmFkN2E0NjExM2ZiMGQ4NDZlOTdjNjY=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1597312278048,
+    "testFrameworks": ["gatling", "cucumber"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "vi",
+    "languages": ["vi", "en"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
