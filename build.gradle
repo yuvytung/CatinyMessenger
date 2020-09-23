@@ -162,7 +162,7 @@ checkstyle {
     checkstyleTest.enabled = false
 }
 nohttp {
-    source.include "build.gradle", "README.md"
+    source.include  "README.md" //, "build.gradle"
 }
 
 configurations {
@@ -183,7 +183,7 @@ repositories {
     jcenter()
     //jhipster-needle-gradle-repositories - JHipster will add additional repositories
     maven {
-        url("http://catiny.com:17010/repository/tools/")
+        url "${regitiny_repository}"
     }
 }
 
