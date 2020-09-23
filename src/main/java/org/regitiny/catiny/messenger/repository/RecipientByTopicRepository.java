@@ -2,12 +2,10 @@ package org.regitiny.catiny.messenger.repository;
 
 import org.regitiny.catiny.messenger.domain.RecipientByTopic;
 
-import org.regitiny.catiny.messenger.service.dto.RecipientByTopicDTO;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**

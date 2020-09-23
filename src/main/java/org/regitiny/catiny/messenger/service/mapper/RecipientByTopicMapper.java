@@ -10,7 +10,8 @@ import org.mapstruct.*;
  * Mapper for the entity {@link RecipientByTopic} and its DTO {@link RecipientByTopicDTO}.
  */
 @Mapper(componentModel = "spring", uses = {})
-public interface RecipientByTopicMapper extends EntityMapper<RecipientByTopicDTO, RecipientByTopic> {
+public interface RecipientByTopicMapper extends EntityMapper<RecipientByTopicDTO, RecipientByTopic>
+{
 
 
 }

@@ -1,32 +1,26 @@
 package org.regitiny.catiny.messenger.web.rest;
 
-import org.regitiny.catiny.messenger.domain.MessageSimpleByRecipient;
+
 import org.regitiny.catiny.messenger.service.MessageSimpleByRecipientService;
 import org.regitiny.catiny.messenger.web.rest.api.MessageSimpleByRecipientApi;
-import org.regitiny.catiny.messenger.web.rest.errors.BadRequestAlertException;
 import org.regitiny.catiny.messenger.service.dto.MessageSimpleByRecipientDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
  * REST controller for managing {@link org.regitiny.catiny.messenger.domain.MessageSimpleByRecipient}.
  */
 @RestController
-@RequestMapping("/api/message-simple")
+@RequestMapping("/api/entity/message-simple")
 public class MessageSimpleByRecipientResource implements MessageSimpleByRecipientApi
 {
 

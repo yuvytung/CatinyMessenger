@@ -1,7 +1,5 @@
 package org.regitiny.catiny.messenger.web.rest;
 
-import io.github.jhipster.web.util.HeaderUtil;
-import io.netty.handler.codec.HeadersUtils;
 import org.json.JSONObject;
 import org.regitiny.catiny.messenger.domain.RecipientByTopic;
 import org.regitiny.catiny.messenger.service.RecipientByTopicService;
@@ -10,7 +8,7 @@ import org.regitiny.catiny.messenger.service.mapper.RecipientByTopicMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ import java.util.List;
  * REST controller for managing {@link org.regitiny.catiny.messenger.domain.RecipientByTopic}.
  */
 @RestController
-@RequestMapping("/api/recipient")
+@RequestMapping("/api/entity/recipient")
 public class RecipientByTopicResource
 {
 
@@ -45,7 +43,7 @@ public class RecipientByTopicResource
 
 
   /**
-   * {@code POST  /services/check} : recipientByTopic check CRUD .
+   * {@code POST  /check} : recipientByTopic check CRUD .
    *
    * @param requestParam the recipientByTopicDTO to create.
    * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new recipientByTopicDTO, or with status {@code 400 (Bad Request)} if the recipientByTopic has already an ID.

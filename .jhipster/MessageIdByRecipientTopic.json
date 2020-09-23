@@ -14,12 +14,14 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "messageId",
-      "fieldType": "UUID"
+      "fieldName": "createDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "createDate",
-      "fieldType": "Instant"
+      "fieldName": "messageId",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "messageStatus",

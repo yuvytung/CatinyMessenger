@@ -1,6 +1,5 @@
 package org.regitiny.catiny.messenger.service.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 import org.regitiny.tools.magic.quick.JsonQuickMagic;
 
@@ -12,7 +11,8 @@ import java.util.UUID;
 /**
  * A DTO for the {@link org.regitiny.catiny.messenger.domain.RecipientByTopic} entity.
  */
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

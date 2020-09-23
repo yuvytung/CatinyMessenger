@@ -3,7 +3,6 @@ package org.regitiny.catiny.messenger.repository;
 import org.regitiny.catiny.messenger.domain.MessageSimpleByRecipient;
 
 import org.regitiny.catiny.messenger.domain.key.MessageSimpleByRecipientKey;
-import org.regitiny.catiny.messenger.service.dto.MessageSimpleByRecipientDTO;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
