@@ -2,6 +2,7 @@ package org.regitiny.catiny.messenger.service.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
+import org.regitiny.tools.magic.quick.JsonQuickMagic;
 
 import java.time.Instant;
 import javax.validation.constraints.*;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipientByTopicDTO extends JsonMagic implements Serializable
+public class RecipientByTopicDTO extends JsonQuickMagic implements Serializable
 {
 
   @NotNull
@@ -45,7 +46,7 @@ public class RecipientByTopicDTO extends JsonMagic implements Serializable
       return false;
     return (recipientId != null) &&
       (topicId != null) &&
-      topicId.equals(((RecipientByTopicDTO) o).topicId)&&
+      topicId.equals(((RecipientByTopicDTO) o).topicId) &&
       recipientId.equals(((RecipientByTopicDTO) o).recipientId);
   }
 
@@ -60,7 +61,7 @@ public class RecipientByTopicDTO extends JsonMagic implements Serializable
   public String toString()
   {
     return "RecipientByTopicDTO{" +
-      " topicId='" + getTopicId() + "'" +
+      "  topicId='" + getTopicId() + "'" +
       ", recipientId='" + getRecipientId() + "'" +
       ", role='" + getRole() + "'" +
       ", createDate='" + getCreateDate() + "'" +

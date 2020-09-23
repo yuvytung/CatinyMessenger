@@ -125,17 +125,17 @@ public class MessageSimpleByRecipient extends MessageSimpleByRecipientKey implem
   public String toString()
   {
     return "MessageSimpleByRecipientDTO{" +
-      "recipientId=" + recipientId +
-      ", topicId=" + topicId +
-      ", senderName='" + senderName + '\'' +
-      ", content='" + content + '\'' +
-      ", createDate=" + createDate +
-      ", senderId=" + senderId +
-      ", recipientName='" + recipientName + '\'' +
-      ", topicName='" + topicName + '\'' +
-      ", messageStatus='" + messageStatus + '\'' +
-      ", messageId=" + messageId +
-      '}';
+      "  recipientId='" + getRecipientId() + "'" +
+      ", topicId='" + getTopicId() + "'" +
+      ", senderName='" + getSenderName() + "'" +
+      ", content='" + getContent() + "'" +
+      ", createDate='" + getCreateDate() + "'" +
+      ", senderId='" + getSenderId() + "'" +
+      ", recipientName='" + getRecipientName() + "'" +
+      ", topicName='" + getTopicName() + "'" +
+      ", messageStatus='" + getMessageStatus() + "'" +
+      ", messageId='" + getMessageId() + "'" +
+      "}";
   }
 
 }
