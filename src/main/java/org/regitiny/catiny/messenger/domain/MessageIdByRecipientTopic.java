@@ -76,13 +76,9 @@ public class MessageIdByRecipientTopic extends MessageIdByRecipientTopicKey impl
   public boolean equals(Object o)
   {
     if (this == o)
-    {
       return true;
-    }
     if (!(o instanceof MessageIdByRecipientTopic))
-    {
       return false;
-    }
     return recipientId != null &&
       topicId != null &&
       messageId != null &&

@@ -9,6 +9,11 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "createDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "messageId",
       "fieldType": "UUID",
       "fieldValidateRules": ["required"]
@@ -20,10 +25,6 @@
     {
       "fieldName": "messageContent",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "createDate",
-      "fieldType": "Instant"
     },
     {
       "fieldName": "modifyDate",
@@ -41,13 +42,12 @@
       "fieldName": "deletedStatus",
       "fieldType": "Boolean"
     }
-
   ],
   "changelogDate": "20200901111817",
   "dto": "mapstruct",
   "searchEngine": false,
   "service": "serviceImpl",
-  "entityTableName": "message_by_topic_messageId",
+  "entityTableName": "message_by_topic_message_id",
   "databaseType": "cassandra",
   "readOnly": false,
   "jpaMetamodelFiltering": false,

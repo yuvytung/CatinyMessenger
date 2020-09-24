@@ -17,10 +17,10 @@ import java.util.UUID;
 public class RecipientByTopicKey
 {
   @NotNull
-  @PrimaryKeyColumn(name = "topicId", type = PrimaryKeyType.PARTITIONED , ordinal = 0)
+  @PrimaryKeyColumn( type = PrimaryKeyType.PARTITIONED , ordinal = 0)
   protected UUID topicId;
 
   @NotNull
-  @PrimaryKeyColumn(name = "recipientId", ordinal = 1)
+  @PrimaryKeyColumn(type = PrimaryKeyType.CLUSTERED, ordinal = 1)
   protected UUID recipientId;
 }
