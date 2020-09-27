@@ -272,7 +272,7 @@ dependencies {
     compileOnly 'org.json:json:20200518'
 
     //local remote yuvytung
-    implementation 'org.regitiny:tools:1.0.02@jar'
+    implementation 'org.regitiny:tools:1.0-20200927.111024-1'
 
     // test
     testCompile 'org.json:json:20200518'
