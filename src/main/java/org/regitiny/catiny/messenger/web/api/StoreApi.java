@@ -3,10 +3,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package org.regitiny.catiny.messenger.web.rest.example.api;
+package org.regitiny.catiny.messenger.web.api;
 
 import io.swagger.annotations.*;
-import org.regitiny.catiny.messenger.web.rest.example.api.model.Order;
+import org.regitiny.catiny.messenger.web.api.model.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;

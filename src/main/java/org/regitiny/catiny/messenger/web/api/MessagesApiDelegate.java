@@ -1,8 +1,8 @@
-package org.regitiny.catiny.messenger.web.rest.example.api;
+package org.regitiny.catiny.messenger.web.api;
 
 
-import org.regitiny.catiny.messenger.web.rest.example.api.model.Message;
-import org.regitiny.catiny.messenger.web.rest.example.api.model.Topic;
+import org.regitiny.catiny.messenger.web.api.model.Message;
+import org.regitiny.catiny.messenger.web.api.model.Topic;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.NativeWebRequest;

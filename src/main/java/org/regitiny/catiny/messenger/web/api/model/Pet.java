@@ -1,4 +1,4 @@
-package org.regitiny.catiny.messenger.web.rest.example.api.model;
+package org.regitiny.catiny.messenger.web.api.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
