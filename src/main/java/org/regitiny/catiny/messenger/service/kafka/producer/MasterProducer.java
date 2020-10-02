@@ -31,21 +31,13 @@ public class MasterProducer
 //    return producer.replyKafkaTemplate(replyTopic);
 //  }
 
-  @Value("${kafka.producer.services.catiny-uaa.reply-topic}")
-  private String replyTopic;
-
+  //  quy tắc đặt tên reply topic : replyKafka_<service request>_<service reply>_<Entity>_<Other>
+  //  quy tắc đặt tên method : replyKafka__<service reply>_<Entity>_<Other>
   @SuppressWarnings("rawtypes")
   @Bean
   public ReplyingKafkaTemplate replyKafkaCatinyUAAMaster(Producer<String,String> producer)
   {
-    return producer.replyKafkaTemplate(replyTopic);
-  }
-
-  @SuppressWarnings("rawtypes")
-  @Bean
-  public ReplyingKafkaTemplate replyKafkaCatinyUAAMaster2(Producer<String,String> producer)
-  {
-    return producer.replyKafkaTemplate(replyTopic);
+    return producer.replyKafkaTemplate("replyKafka_CatinyMessenger_CatinyUAA_Master");
   }
 
 }

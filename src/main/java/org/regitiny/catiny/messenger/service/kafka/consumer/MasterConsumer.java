@@ -37,9 +37,11 @@ public class MasterConsumer
 //    return request;
 //  }
 
-  // reply mặc định gửi tin nhắn là: String
 
-  @KafkaListener(topics = "topic", containerFactory = "requestListenerContainerFactory")
+  //  quy tắc đặt tên reply topic : requestKafka_<service request>_<service reply>_<Entity>_<Other>
+  //  quy tắc đặt tên method : requestKafka__<service reply>_<Entity>_<Other>
+
+  @KafkaListener(topics = "requestKafka_CatinyMessenger_CatinyUAA_Master", containerFactory = "requestListenerContainerFactory")
   @SendTo
   public String receive(String request)
   {
