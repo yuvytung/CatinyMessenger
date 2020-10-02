@@ -90,8 +90,9 @@ public class MessageByTopicMessageId extends MessageByTopicMessageIdKey implemen
             return true;
         if (!(o instanceof MessageByTopicMessageId))
             return false;
-        return topicId != null && messageId != null &&
+        return topicId != null && messageId != null && createDate != null &&
           topicId.equals(((MessageByTopicMessageId) o).topicId) &&
+          createDate.equals(((MessageByTopicMessageId) o).createDate) &&
           messageId.equals(((MessageByTopicMessageId) o).messageId);
     }
 

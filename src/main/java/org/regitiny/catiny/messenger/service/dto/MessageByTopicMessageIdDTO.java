@@ -47,8 +47,9 @@ public class MessageByTopicMessageIdDTO extends JsonQuickMagic implements Serial
             return true;
         if (!(o instanceof MessageByTopicMessageIdDTO))
             return false;
-        return topicId != null && messageId != null &&
+        return topicId != null && messageId != null && createDate != null &&
           topicId.equals(((MessageByTopicMessageIdDTO) o).topicId) &&
+          createDate.equals(((MessageByTopicMessageIdDTO) o).createDate) &&
           messageId.equals(((MessageByTopicMessageIdDTO) o).messageId);
     }
 
