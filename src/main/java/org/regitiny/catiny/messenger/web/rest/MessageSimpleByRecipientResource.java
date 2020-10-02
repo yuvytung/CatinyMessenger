@@ -2,7 +2,6 @@ package org.regitiny.catiny.messenger.web.rest;
 
 
 import org.regitiny.catiny.messenger.service.MessageSimpleByRecipientService;
-import org.regitiny.catiny.messenger.web.rest.api.MessageSimpleByRecipientApi;
 import org.regitiny.catiny.messenger.service.dto.MessageSimpleByRecipientDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -21,7 +20,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/api/entity/message-simple")
-public class MessageSimpleByRecipientResource implements MessageSimpleByRecipientApi
+public class MessageSimpleByRecipientResource
 {
 
   private final Logger log = LoggerFactory.getLogger(MessageSimpleByRecipientResource.class);

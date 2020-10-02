@@ -1,4 +1,4 @@
-package org.regitiny.catiny.messenger.web.rest.example.api.model;
+package org.regitiny.catiny.messenger.web.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -6,55 +6,55 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 
 /**
- * Topic
+ * Tag
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-19T21:01:24.515+07:00[Asia/Bangkok]")
 
-public class Topic   {
-  @JsonProperty("creator")
-  private String creator;
+public class Tag   {
+  @JsonProperty("id")
+  private Long id;
 
-  @JsonProperty("role")
-  private String role;
+  @JsonProperty("name")
+  private String name;
 
-  public Topic creator(String creator) {
-    this.creator = creator;
+  public Tag id(Long id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get creator
-   * @return creator
+   * Get id
+   * @return id
   */
   @ApiModelProperty(value = "")
 
 
-  public String getCreator() {
-    return creator;
+  public Long getId() {
+    return id;
   }
 
-  public void setCreator(String creator) {
-    this.creator = creator;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public Topic role(String role) {
-    this.role = role;
+  public Tag name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get role
-   * @return role
+   * Get name
+   * @return name
   */
   @ApiModelProperty(value = "")
 
 
-  public String getRole() {
-    return role;
+  public String getName() {
+    return name;
   }
 
-  public void setRole(String role) {
-    this.role = role;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -66,23 +66,23 @@ public class Topic   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Topic topic = (Topic) o;
-    return Objects.equals(this.creator, topic.creator) &&
-        Objects.equals(this.role, topic.role);
+    Tag tag = (Tag) o;
+    return Objects.equals(this.id, tag.id) &&
+        Objects.equals(this.name, tag.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(creator, role);
+    return Objects.hash(id, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Topic {\n");
+    sb.append("class Tag {\n");
 
-    sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

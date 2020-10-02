@@ -1,7 +1,7 @@
-package org.regitiny.catiny.messenger.web.rest.example.api;
+package org.regitiny.catiny.messenger.web.api;
 
-import org.regitiny.catiny.messenger.web.rest.example.api.model.ModelApiResponse;
-import org.regitiny.catiny.messenger.web.rest.example.api.model.Pet;
+import org.regitiny.catiny.messenger.web.api.model.ModelApiResponse;
+import org.regitiny.catiny.messenger.web.api.model.Pet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -150,8 +150,8 @@ public interface PetApiDelegate {
      * @see PetApi#uploadFile
      */
     default ResponseEntity<ModelApiResponse> uploadFile(Long petId,
-        String additionalMetadata,
-        MultipartFile file) {
+                                                        String additionalMetadata,
+                                                        MultipartFile file) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
