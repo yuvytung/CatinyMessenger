@@ -88,14 +88,14 @@ public class CatinyMessengerKafkaResource
   }
 
   @Autowired
-  private ReplyingKafkaTemplate replyingKafkaTemplate ;
+  private ReplyingKafkaTemplate<String , String , String > replyKafkaCatinyUAAMaster ;
 
   @GetMapping
   public String pipi()
   {
     Master master = new Master().masterId(UUID.randomUUID());
-    ProducerRecord<String,Master> producerRecord = new ProducerRecord<>("topic", null , "key", master);
-    RequestReplyFuture<String, Master, Master> replyFuture = replyingKafkaTemplate.sendAndReceive(producerRecord);
+    ProducerRecord<String,String> producerRecord = new ProducerRecord<>("topic2", null , "key", master.toString());
+    RequestReplyFuture<String, String, String> replyFuture = replyKafkaCatinyUAAMaster.sendAndReceive(producerRecord);
     try
     {
       System.out.println(replyFuture.get(10, TimeUnit.SECONDS).value());
