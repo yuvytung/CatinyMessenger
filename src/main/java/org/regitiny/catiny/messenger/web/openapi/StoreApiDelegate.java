@@ -1,6 +1,6 @@
-package org.regitiny.catiny.messenger.web.api;
+package org.regitiny.catiny.messenger.web.openapi;
 
-import org.regitiny.catiny.messenger.web.api.model.Order;
+import org.regitiny.catiny.messenger.web.openapi.model.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

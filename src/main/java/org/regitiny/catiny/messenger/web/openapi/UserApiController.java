@@ -1,4 +1,4 @@
-package org.regitiny.catiny.messenger.web.api;
+package org.regitiny.catiny.messenger.web.openapi;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

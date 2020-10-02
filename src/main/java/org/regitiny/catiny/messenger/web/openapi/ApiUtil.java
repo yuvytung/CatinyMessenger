@@ -1,4 +1,4 @@
-package org.regitiny.catiny.messenger.web.api;
+package org.regitiny.catiny.messenger.web.openapi;
 
 import org.springframework.web.context.request.NativeWebRequest;
 
