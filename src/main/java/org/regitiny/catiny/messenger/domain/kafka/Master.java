@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.regitiny.tools.magic.quick.JsonQuickMagic;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Master implements Serializable
+public class Master extends JsonQuickMagic implements Serializable
 {
   private static final long serialVersionUID = 1L;
 

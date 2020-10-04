@@ -84,6 +84,7 @@ public class CacheConfiguration
   {
     return cm ->
     {
+//      createCache(cm, org.regitiny.catiny.messenger.domain.Master.class.getName(), jcacheConfiguration);
       // jhipster-needle-redis-add-entry
     };
   }

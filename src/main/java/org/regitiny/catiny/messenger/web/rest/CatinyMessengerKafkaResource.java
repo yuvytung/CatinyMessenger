@@ -7,12 +7,9 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.regitiny.catiny.messenger.domain.kafka.Master;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
-import org.springframework.kafka.requestreply.RequestReplyFuture;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -20,7 +17,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.*;
 
 @RestController
@@ -85,35 +81,6 @@ public class CatinyMessengerKafkaResource
       emitter.complete();
     });
     return emitter;
-  }
-
-  @Autowired
-  private ReplyingKafkaTemplate<String , String , String > replyKafkaCatinyUAAMaster ;
-
-  @GetMapping
-  public String pipi()
-  {
-    Master master = new Master().masterId(UUID.randomUUID());
-    ProducerRecord<String,String> producerRecord = new ProducerRecord<>("topic2", null , "key", master.toString());
-    RequestReplyFuture<String, String, String> replyFuture = replyKafkaCatinyUAAMaster.sendAndReceive(producerRecord);
-    try
-    {
-      System.out.println(replyFuture.get(10, TimeUnit.SECONDS).value());
-      return replyFuture.get(10, TimeUnit.SECONDS).value().toString();
-    }
-    catch (InterruptedException e)
-    {
-      e.printStackTrace();
-    }
-    catch (ExecutionException e)
-    {
-      e.printStackTrace();
-    }
-    catch (TimeoutException e)
-    {
-      e.printStackTrace();
-    }
-    return "chạy là ngon";
   }
 
   private static class PublishResult
