@@ -7,8 +7,7 @@ package org.regitiny.catiny.messenger.web.openapi;
 
 import io.swagger.annotations.*;
 
-import org.regitiny.catiny.messenger.web.openapi.model.Message;
-import org.regitiny.catiny.messenger.web.openapi.model.Topic;
+import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,7 @@ import javax.validation.Valid;
 
 @Validated
 @Api(value = "messages", description = "the messages API")
-@RequestMapping("/rest/message/")
+@RequestMapping("/apix/message/")
 public interface MessagesApi
 {
 
@@ -74,4 +73,15 @@ public interface MessagesApi
 
   @GetMapping
   String pipi();
+
+
+  @Data
+  class Message
+  {
+    private String sender;
+
+    private String sendDate;
+
+    private String topicId;
+  }
 }

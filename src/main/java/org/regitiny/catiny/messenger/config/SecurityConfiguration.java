@@ -47,6 +47,7 @@ public class SecurityConfiguration extends ResourceServerConfigurerAdapter
       .and()
       .authorizeRequests()
       .antMatchers("/api/**").authenticated()
+      .antMatchers("/api/deep/**").permitAll() //This api is only used for local services . it was blocked by the gateway
       .antMatchers("/management/health").permitAll()
       .antMatchers("/management/info").permitAll()
       .antMatchers("/management/prometheus").permitAll()

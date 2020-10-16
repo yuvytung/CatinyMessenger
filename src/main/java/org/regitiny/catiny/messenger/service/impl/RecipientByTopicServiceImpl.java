@@ -71,14 +71,12 @@ public class RecipientByTopicServiceImpl implements RecipientByTopicService
   @Override
   public List<RecipientByTopicDTO> findByTopic(UUID topicId)
   {
-    return recipientByTopicMapper.toDto( recipientByTopicRepository.findByTopicId(topicId));
+    return recipientByTopicMapper.toDto(recipientByTopicRepository.findByTopicId(topicId));
   }
 
   @Override
   public RecipientByTopic create()
   {
-    return recipientByTopicRepository.save(new RecipientByTopic().
-      topicId(UUID.randomUUID()).
-      recipientId(UUID.randomUUID()));
+    return recipientByTopicRepository.save(new RecipientByTopic().topicId(UUID.randomUUID()).recipientId(UUID.randomUUID()));
   }
 }
