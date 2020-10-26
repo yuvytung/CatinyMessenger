@@ -30,7 +30,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://admin:${jhipster.registry.password}@localhost:10200/eureka/
+      defaultZone: http://admin:${jhipster.registry.password}@dev.catiny.com:10200/eureka/
 
 spring:
   kafka:

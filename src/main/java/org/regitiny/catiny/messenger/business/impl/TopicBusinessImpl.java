@@ -68,7 +68,6 @@ public class TopicBusinessImpl implements TopicBusiness
       return null;
     }
 
-
     if (recipientByTopicService.findByTopic(newTopicId).size() > 0)
       throw new ExistException("This topic already exists");
 
@@ -96,7 +95,7 @@ public class TopicBusinessImpl implements TopicBusiness
     recipientByTopicService.save(recipientByTopicMapper.toDto(recipientByTopic));
 
     JSONObject jsonResult = new JSONObject();
-    jsonResult.put("topicId", newTopicId);
+    jsonResult.put("topicId", newTopicId.toString());
     jsonResult.put("topicName", topicName);
     jsonResult.put("status", "created");
 
@@ -148,7 +147,7 @@ public class TopicBusinessImpl implements TopicBusiness
     recipientByTopicService.save(recipientByTopic);
 
     JSONObject jsonResult = new JSONObject();
-    jsonResult.put("topicId", newTopicId);
+    jsonResult.put("topicId", newTopicId.toString());
     jsonResult.put("topicName", topicName);
     jsonResult.put("status", "created");
 
