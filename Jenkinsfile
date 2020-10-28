@@ -37,6 +37,8 @@ node {
 		{
 			echo 'the necessary services are not running . try start it'
 			sh "docker-compose -f src/main/docker/app-prod.yml up -d"
+			echo 'Sleep for 80 seconds to wait for the cassandra to be ready'
+			sleep(80)
 		}
 	}
 
@@ -81,14 +83,13 @@ node {
 
 	stage('start docker catiny-messenger')
 	{
-		sh "docker-compose -f src/main/docker/app-prod.yml up -d"
 		sh "docker-compose -f src/main/docker/catiny-messenger.yml up -d"
 		echo "Successful deployment"
 	}
 
 	stage( 'Log display after 200 seconds from running')
 	{
-		sleep(200)
+		sleep(60)
 		sh "docker logs docker_catinymessenger-app_1 --tail 1000"
 	}
 }
