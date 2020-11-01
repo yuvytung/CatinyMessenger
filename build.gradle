@@ -273,10 +273,16 @@ dependencies {
 //    implementation 'org.springframework.data:spring-data-redis:2.3.4.RELEASE'
 
     //local remote yuvytung
-    implementation 'org.regitiny:tools:1.0-20200927.111024-1'
+    compile group: "org.regitiny", name: "tools" , version: "1.0-+" , changing: true
 
     // test
     testCompile 'org.json:json:20200518'
+}
+
+configurations.all
+{
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
 }
 
 if (project.hasProperty("gae")) {

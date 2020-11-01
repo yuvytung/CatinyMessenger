@@ -33,26 +33,6 @@ eureka:
       defaultZone: http://admin:${jhipster.registry.password}@dev.catiny.com:10200/eureka/
 
 spring:
-  kafka:
-    producer:
-      properties:
-        spring:
-          json:
-            add:
-              type:
-                headers: false
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    consumer:
-      properties:
-        spring:
-          json:
-            trusted:
-              packages: 'org.regitiny.catiny.uaa.service.kafka.producer'
-            value:
-              default:
-                type:
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-
   profiles:
     active: dev
     include:
