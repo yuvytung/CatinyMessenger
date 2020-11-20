@@ -6,9 +6,12 @@ import org.regitiny.catiny.messenger.service.dto.kafka.MasterDTO;
 import org.regitiny.catiny.messenger.utils.MasterUtils;
 import org.regitiny.catiny.messenger.web.openapi.MessagesApi;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +42,9 @@ public class MessagesApiImpl implements MessagesApi
     return null;
   }
 
+  @Autowired
+  KafkaTemplate<String,String> kafkaTemplate;
+
   @Override
   public String pipi()
   {
@@ -58,11 +64,30 @@ public class MessagesApiImpl implements MessagesApi
   }
 
   @GetMapping("/deep/{id}/{di}")
-  @CachePut(key = "{#id}" , cacheNames = "pika")
   public String cachePut(@PathVariable("id") String id,@PathVariable("di") String di)
   {
-    System.out.println( "chạy ngon đét");
+    kafkaTemplate.send("pikachu","sadasdsadsadsadsafasdgdsfewrfedfre3few");
+    log.info( "chạy ngon đét");
     return "xx"+id+di;
+  }
+
+  @KafkaListener(topics = "pikachu", containerFactory = "listenerContainerFactory")
+  public void receive(String request)
+  {
+    log.info(request);
+
+  }
+  @KafkaListener(topics = "pikachu",groupId = "pikachu",containerFactory = "listenerContainerFactory")
+  public void receifdsve(String request)
+  {
+    log.info(request);
+
+  }
+  @KafkaListener(topics = "pikachu",groupId = "pikachu", containerFactory = "listenerContainerFactory")
+  public void receifdsvde(String request)
+  {
+    log.info(request);
+
   }
 
 }

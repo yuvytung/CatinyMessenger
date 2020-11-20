@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  catinymessenger:
+    image: repo.catiny.com/catinymessenger:latest
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - JHIPSTER_CACHE_REDIS_SERVER=redis://catinymessenger-redis:6379
+      - JHIPSTER_CACHE_REDIS_CLUSTER=false
+      - SPRING_DATA_CASSANDRA_CONTACTPOINTS=catinymessenger-cassandra
+      - JHIPSTER_SLEEP=30 # gives time for uaa and the Cassandra cluster to start and execute the migration scripts (80s)
+      - KAFKA_BOOTSTRAPSERVERS=kafka:9092
+    ports:
+      - 10010:10010
+    networks:
+      - catiny-swarm-net
+    deploy:
+      replicas: 2
+
+  catinyuaa:
+    image: repo.catiny.com/catinyuaa:latest
+    environment:
+      - _JAVA_OPTIONS=-Xms64m -Xmx512m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://catinyuaa-mariadb:3306/catinyuaa?useLegacyDatetimeCode=false&serverTimezone=UTC
+      - JHIPSTER_CACHE_REDIS_SERVER=redis://catinyuaa-redis:6379
+      - JHIPSTER_CACHE_REDIS_CLUSTER=false
+      - JHIPSTER_SLEEP=1 # gives time for mariadb server to start (120s)
+      - SPRING_DATA_JEST_URI=http://catinyuaa-elasticsearch:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=http://catinyuaa-elasticsearch:9200
+      - KAFKA_BOOTSTRAPSERVERS=kafka:9092
+    ports:
+      - 10500:10500
+    networks:
+      - catiny-swarm-net
+    deploy:
+      replicas: 2
+
+  catinygateway:
+    image: repo.catiny.com/catinygateway:latest
+    environment:
+      - _JAVA_OPTIONS=-Xms64m -Xmx512m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://catinygateway-mariadb:3306/catinygateway?useLegacyDatetimeCode=false&serverTimezone=UTC
+      - JHIPSTER_CACHE_REDIS_SERVER=redis://catinygateway-redis:6379
+      - JHIPSTER_CACHE_REDIS_CLUSTER=false
+      - JHIPSTER_SLEEP=30 # gives time for mariadb server to start (120s)
+      - SPRING_DATA_JEST_URI=http://catinygateway-elasticsearch:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=http://catinygateway-elasticsearch:9200
+      - KAFKA_BOOTSTRAPSERVERS=kafka:9092
+    ports:
+      - 10000:10000
+    networks:
+      - catiny-swarm-net
+    deploy:
+      replicas: 2
+
+networks:
+  catiny-swarm-net:
+    external:
+      name: service_default
