@@ -3,8 +3,8 @@ jib {
 		image = "adoptopenjdk:11-jre-hotspot"
 	}
 	to {
-		image = "yuvytung/catinymessenger:latest"
-//        image = "catinymessenger:latest"    // Default
+//		image = "yuvytung/catinymessenger:latest"
+		image = "catinymessenger:latest"    // Default
 	}
 	container {
 		entrypoint = ["bash", "-c", "/entrypoint.sh"]
