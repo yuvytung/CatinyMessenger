@@ -114,6 +114,20 @@ node {
 		}
 	}
 
+	stage('check catiny app is running')
+	{
+		try
+		{
+			sh "docker stack inspect catiny-app-prod"
+			sh "docker stack inspect catiny-app-dev"
+		}
+		catch (exception)
+		{
+			echo "catiny app dev or prod isn't running"
+			throw exception
+		}
+	}
+
 	stage('start docker catiny-messenger')
 	{
 		try
