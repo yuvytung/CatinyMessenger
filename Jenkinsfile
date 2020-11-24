@@ -118,8 +118,8 @@ node {
 	{
 		try
 		{
-			sh "docker stack inspect catiny-app-prod"
-			sh "docker stack inspect catiny-app-dev"
+			sh "docker stack ls | grep catiny-app-prod"
+			sh "docker stack ls | grep catiny-app-dev"
 		}
 		catch (exception)
 		{
@@ -133,14 +133,14 @@ node {
 		try
 		{
 			sh "docker service update --force catiny-app-dev_catinymessenger"
-			sleep(60)
-			sh "docker service logs --tail 1000 catiny-app-dev_catinymessenger"
+//			sleep(60)
+//			sh "docker service logs --tail 1000 catiny-app-dev_catinymessenger"
 		}
 		catch (exception)
 		{
 			throw exception
 		}
-		sleep(60)
+//		sleep(60)
 		sh "docker service update --force catiny-app-prod_catinymessenger"
 		echo "Successful deployment"
 	}
